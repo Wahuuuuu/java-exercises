@@ -1,15 +1,9 @@
 class Solution {
     public static String reverseWords(String s) {
-        String reversed = reverse(s);
-        return reversed;
-    }
-
-
-    public static String reverse(String s) {
         StringBuffer r = new StringBuffer();
 
         rec_reverse(s, nextNonSpace(s, 0), r);
-        r.deleteCharAt(s.length()-1); // must end with an extra space character
+        r.deleteCharAt(r.length()-1); // must end with an extra space character
 
         return r.toString();
     }
@@ -29,14 +23,12 @@ class Solution {
 
         char ch = s.charAt(index);
         StringBuffer word = new StringBuffer();
-        while (index < s.length()-1 && s.charAt(index) != ' '){
-            System.out.println("The current char is " + s.charAt(index));
+        while (index < s.length() && s.charAt(index) != ' '){
             word.append(s.charAt(index));
 
             index ++;
         }
         // index points to a space once the loop ends
-        System.out.println("the loop is broke, now points to " + s.charAt(index));
 
         rec_reverse(s, nextNonSpace(s, index), r);
 
@@ -55,9 +47,8 @@ class Solution {
      * @return index if there are more non-space chars, -1 otherwise
      */
     public static int nextNonSpace(String s, int index) {
-        for (int i = index; i < s.length()-1; i++) {
+        for (int i = index; i < s.length(); i++) {
             if (s.charAt(i) != ' ') {
-                System.out.println("The non-space char is at " + i + ", which is " + s.charAt(i));
                 return i;
             }
         }
