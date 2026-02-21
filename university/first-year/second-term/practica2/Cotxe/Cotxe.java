@@ -24,6 +24,7 @@ public class Cotxe {
             return;
         }
         velocitatActual -= decrement;
+        if (velocitatActual < 0) velocitatActual = 0;
     }
 
     public void mostrarInformacio() {
