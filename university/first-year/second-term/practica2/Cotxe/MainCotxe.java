@@ -4,7 +4,7 @@ public class MainCotxe {
 
  public static void main(String[] args) {
   Scanner sc = new Scanner(System.in);
-  Cotxe c = new Cotxe("marca", "model", 1990);
+  Cotxe c = new Cotxe("marca", "prog2", 1990);
 
   boolean continuar = true;
   while (continuar) {

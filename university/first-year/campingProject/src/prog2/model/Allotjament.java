@@ -13,14 +13,15 @@ public abstract class Allotjament implements InAllotjament {
     public String getId() { return this.id; }
     public void setId(String id) { this.id = id; }
 
-    public long getEstadaMinima(Temp temp) { return ()? estadaMinimaAlta:estadaMinimaBaixa; }
+    public long getEstadaMinima(Temp temp) { return (temp == Temp.ALTA)? estadaMinimaAlta:estadaMinimaBaixa; }
     public void setEstadaMinima(long estadaMinimaALTA_, long estadaMinimaBAIXA_) {
         this.estadaMinimaAlta = estadaMinimaALTA_;
         this.estadaMinimaBaixa = estadaMinimaBAIXA_;
     }
 
 
-    // action method
+    // other methods
+    // --------------------
     public abstract boolean correcteFuncionament();
 
 }
