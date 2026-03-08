@@ -1,9 +1,8 @@
-package prog2.model;
+package model.test;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import prog2.vista.ExcepcioReserva;
 
 class AllotjamentTest {
 

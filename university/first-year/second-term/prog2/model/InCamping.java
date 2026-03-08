@@ -1,10 +1,10 @@
 
-package prog2.model;
+package model;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-import prog2.vista.ExcepcioReserva;
+import vista.ExcepcioReserva;
 
 /**
  * Interfície per definir la forma del Càmping

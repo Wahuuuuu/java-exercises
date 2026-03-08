@@ -1,4 +1,4 @@
-package prog2.model;
+package model;
 
 public interface InClient {
 

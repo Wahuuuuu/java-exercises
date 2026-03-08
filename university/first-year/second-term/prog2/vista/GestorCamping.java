@@ -1,12 +1,12 @@
 
-package prog2.vista;
+package vista;
 
 import prog2.model.Camping;
 
 
 /**
  * Classe per gestionar els allotjaments del Càmping del Mar.
- * @author lauraigual
+ * @author Yanzhe Chen
  */
 public class GestorCamping {
 
