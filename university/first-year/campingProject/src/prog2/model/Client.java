@@ -1,4 +1,4 @@
-package model;
+package prog2.model;
 
 public class Client implements InClient {
     private String nom;

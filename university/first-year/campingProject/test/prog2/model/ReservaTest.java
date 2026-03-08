@@ -1,8 +1,8 @@
-package test.model;
+package prog2.model;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import vista.ExcepcioReserva;
+import prog2.vista.ExcepcioReserva;
 
 import java.time.LocalDate;
 

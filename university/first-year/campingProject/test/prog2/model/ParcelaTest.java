@@ -1,5 +1,5 @@
 
-package test.model;
+package prog2.model;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;

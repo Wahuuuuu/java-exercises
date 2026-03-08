@@ -1,9 +1,19 @@
-package model;
+package prog2.model;
 
 public abstract class Allotjament implements InAllotjament {
     protected String nom;
     protected String id;
     protected long estadaMinimaAlta, estadaMinimaBaixa;
+
+
+    // cosntructor
+    public Allotjament(String nom, String id, int estadaMinimaAlta, int estadaMinimaBaixa) {
+        this.nom = nom;
+        this.id = id;
+        this.estadaMinimaAlta = estadaMinimaAlta;
+        this.estadaMinimaBaixa = estadaMinimaBaixa;
+    }
+
 
     // getters and setters:
     // ---------------------------
@@ -24,4 +34,3 @@ public abstract class Allotjament implements InAllotjament {
     // --------------------
     public abstract boolean correcteFuncionament();
 
-}

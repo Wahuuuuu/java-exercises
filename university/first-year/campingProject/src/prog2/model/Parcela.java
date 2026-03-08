@@ -1,7 +1,7 @@
-package model;
+package prog2.model;
 
 public class Parcela extends Allotjament{
-    private float metres;
+    private float mida;
     private boolean connexioElectrica;
     {
         estadaMinimaBaixa = 2;
@@ -11,20 +11,20 @@ public class Parcela extends Allotjament{
 
     // Constructors
     // ----------------------
-    public Parcela(String nom, String idAllotjament, float metres, boolean connexioElectrica){
+    public Parcela(String nom, String idAllotjament, float mida, boolean connexioElectrica){
         this.nom = nom;
         this.id = idAllotjament;
-        this.metres = metres;
+        this.mida = mida;
         this.connexioElectrica = connexioElectrica;
     }
 
 
     // getters and setters
     // --------------------------
-    public float getMetres() { return this.metres; }
-    public void setMetres(float metres) { this.metres = metres; }
+    public float getMida() { return this.mida; }
+    public void setMida(float mida) { this.mida = mida; }
 
-    public boolean getConnexioElectrica() { return this.connexioElectrica; }
+    public boolean isConnexioElectrica() { return this.connexioElectrica; }
     public void setConnexioElectrica(boolean connexioElectrica) { this.connexioElectrica = connexioElectrica; }
 
 

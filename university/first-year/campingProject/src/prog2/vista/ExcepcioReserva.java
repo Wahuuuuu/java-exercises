@@ -1,5 +1,5 @@
 
-package vista;
+package prog2.vista;
 
 /**
  *

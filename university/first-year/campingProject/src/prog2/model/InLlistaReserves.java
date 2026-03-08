@@ -1,8 +1,8 @@
 
-package model;
+package prog2.model;
 
 import java.time.LocalDate;
-import vista.ExcepcioReserva;
+import prog2.vista.ExcepcioReserva;
 
 /**
  * Interfície per definir la forma de la llista de reserves
