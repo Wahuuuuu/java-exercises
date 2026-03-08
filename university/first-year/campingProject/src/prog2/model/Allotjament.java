@@ -6,7 +6,12 @@ public abstract class Allotjament implements InAllotjament {
     protected long estadaMinimaAlta, estadaMinimaBaixa;
 
 
-    // cosntructor
+    // constructors:
+    // --------------------------
+    public Allotjament(String nom, String id) {
+        this(nom, id, -1, -1);
+    }
+
     public Allotjament(String nom, String id, int estadaMinimaAlta, int estadaMinimaBaixa) {
         this.nom = nom;
         this.id = id;
@@ -17,13 +22,26 @@ public abstract class Allotjament implements InAllotjament {
 
     // getters and setters:
     // ---------------------------
-    public String getNom() { return this.nom; }
-    public void setNom(String nom) { this.nom = nom; }
+    public String getNom() {
+        return this.nom;
+    }
 
-    public String getId() { return this.id; }
-    public void setId(String id) { this.id = id; }
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
 
-    public long getEstadaMinima(Temp temp) { return (temp == Temp.ALTA)? estadaMinimaAlta:estadaMinimaBaixa; }
+    public String getId() {
+        return this.id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public long getEstadaMinima(Temp temp) {
+        return (temp == Temp.ALTA) ? estadaMinimaAlta : estadaMinimaBaixa;
+    }
+
     public void setEstadaMinima(long estadaMinimaALTA_, long estadaMinimaBAIXA_) {
         this.estadaMinimaAlta = estadaMinimaALTA_;
         this.estadaMinimaBaixa = estadaMinimaBAIXA_;
@@ -33,4 +51,4 @@ public abstract class Allotjament implements InAllotjament {
     // other methods
     // --------------------
     public abstract boolean correcteFuncionament();
-
+}
