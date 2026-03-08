@@ -1,0 +1,40 @@
+1.
+He implementat 11 classes en total, son:
+    Allotjament, Bungalow, BungalowPremium, Camping, Casa, Client, Glamping, LlistaReserves, MobilHome, Parcela i Reserva.
+
+2.
+Classes:
+ -    Allotjament
+        - Parcela
+        - Casa
+            - Bungalow
+                - BungalowPremium
+            - Camping
+            - Glamping
+            - MobilHome
+ -   Camping
+ -   Client
+ -   LlistaReserves
+ -   Reserva
+
+
+3.
+Els atributs de la classe Reserva son:
+    - Clients
+    - Allotjaments
+    - data de Entrada
+    - data de Sortida
+
+Perquè una reserva ha d’identificar el client que la fa, l’allotjament reservat i el període de l’estada. Aquests atributs són necessaris per representar correctament una reserva i per poder comprovar la disponibilitat i l’estada mínima.
+
+4.
+Els metodes correcteFuncionaments estàn realitzats en les sublasses. perquè són aquestes classes les que tenen els atributs específics que permeten determinar si cada allotjament funciona correctament. No es pot decidir només des de la superclasse, ja que cada tipus d’allotjament té condicions diferents.
+
+5.
+No he implementat el mètode toString() en aquesta pràctica. Disculpes per aquesta manca...
+
+6.
+He definit els atributs com a private per evitar l’accés i la modificació directa des de fora de la classe, i així mantenir l’encapsulació.
+Quan cal consultar o modificar un atribut, ho faig mitjançant getters i setters.
+En alguns casos, els atributs de la superclasse s’han definit com a protected perquè les subclasses hi puguin accedir directament.
+En canvi, els atributs específics de les subclasses més concretes s’han definit com a private, perquè no necessiten ser accessibles des d’altres classes.

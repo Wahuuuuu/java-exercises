@@ -163,6 +163,7 @@ public class Camping implements  InCamping {
                 client = c;
             }
         }
+        if (!encontratClient) throw new ExcepcioReserva("El client amb DNI " + dni_ + " no existeix");
 
 
         // cerca l'allotjament correspondent
@@ -177,6 +178,7 @@ public class Camping implements  InCamping {
                 allotjament = a;
             }
         }
+        if (!encontratAllotjament) throw new ExcepcioReserva("L'allotjament amb id " + id_ + " no existeix");
 
 
         // intentar d'afegir la reserva
@@ -229,4 +231,13 @@ public class Camping implements  InCamping {
         return allotjamentMesCurt;
     }
 
+
+    public static InAllotjament.Temp getTemporada(LocalDate data) {
+        // temporada ALTA: 21/3/XXXX - 20/9/XXXX
+        int anyEntrada = data.getYear();
+        boolean estarALTA = data.isAfter(LocalDate.of(anyEntrada, 3, 20))
+                && data.isBefore(LocalDate.of(anyEntrada, 9,21));
+
+        return (estarALTA)? InAllotjament.Temp.ALTA : InAllotjament.Temp.BAIXA;
+    }
 }
