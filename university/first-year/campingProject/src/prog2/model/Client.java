@@ -5,6 +5,10 @@ public class Client implements InClient {
     private String dni;  // 9 digits String
 
 
+    public Client() {
+        this("Default", "Default");
+    }
+
     public Client(String nom, String dni) {
         this.nom = nom;
         this.dni = dni;

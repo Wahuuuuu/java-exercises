@@ -8,6 +8,10 @@ public abstract class Allotjament implements InAllotjament {
 
     // constructors:
     // --------------------------
+    public Allotjament() {
+        this("Default allotjament", "Default allotjament", -1, -1);
+    }
+
     public Allotjament(String nom, String id) {
         this(nom, id, -1, -1);
     }

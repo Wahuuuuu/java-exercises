@@ -6,7 +6,7 @@ import prog2.vista.ExcepcioReserva;
 
 /**
  * Interfície per definir la forma de la llista de reserves
- * @author lauraigual
+ * @author yanzheChen
  */
 public interface InLlistaReserves {
     

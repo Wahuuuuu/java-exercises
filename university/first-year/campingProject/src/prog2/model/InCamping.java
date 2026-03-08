@@ -134,7 +134,7 @@ public interface InCamping {
      * Cerca i retorna l'allotjament amb estada mínima de la temporada alta més curta.
      * @return l'allotjament amb estada mínima de la temporada baixa més curta.
      */
-    Allotjament getAllotjamentEstadaMesCurta(InAllotjament.Temp temp);
+    Allotjament getAllotjamentEstadaMesCurta(InAllotjament.Temp temp) throws ExcepcioReserva;
 
 
 
