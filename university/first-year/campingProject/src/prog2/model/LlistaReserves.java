@@ -4,6 +4,7 @@ import prog2.vista.ExcepcioReserva;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class LlistaReserves implements  InLlistaReserves {
     private ArrayList<Reserva> llista;
@@ -31,18 +32,38 @@ public class LlistaReserves implements  InLlistaReserves {
 
         if (reserva.calcularDiesEstada() < allotjament.getEstadaMinima(temporada)) {
             throw new ExcepcioReserva(
-                    "L’allotjament amb identificador " + allotjament.getId()
-                    + " no està disponible en la data demanada " + dataEntrada
-                    + " pel client " + client.getNom() + " amb DNI: " + client.getDni()
+                    "Les dates sol·licitades pel client " + client.getNom()
+                    + " amb DNI: " + client.getDni()
+                    + " no compleixen l'estada mínima per l'allotjament amb identificador " + allotjament.getId()
             );
         }
 
         // Comprova que l'allotjament estigui disponible pels dies indicats.
+        Iterator<Reserva> it = this.llista.iterator();
+        boolean foundDateOverlap = false;
+        while (it.hasNext() && !foundDateOverlap) {
+            Reserva next = it.next();
+
+            if (next.getAllotjament_().equals(allotjament)) {  // Si ja hi ha una reserva del mateix allotjament que el actual,
+                LocalDate nextEntrada =  next.getDataEntrada();    // comprova si hi ha overlaps en la instancia de reserve
+                LocalDate nextSortida = next.getDataSortida();
+
+                boolean no_overlap =  (!dataSortida.isAfter(nextEntrada) || !nextSortida.isAfter(dataEntrada));
+                if (!no_overlap) throw new ExcepcioReserva(
+                        "L’allotjament amb identificador " + allotjament.getId()
+                                + " no està disponible en la data demanada " + dataEntrada
+                                + " pel client " + client.getNom() + " amb DNI: " + client.getDni()
+                );
+            }
+        }
+
+
+        // Comprova que l'allotjament funciona
         if (!allotjament.correcteFuncionament()) {
             throw new ExcepcioReserva(
-                    "Les dates sol·licitades pel client " + client.getNom()
+                    "L’allotjament amb identificador " + allotjament.getId()
+                    + " no està funcionant, demanada pel client " + client.getNom()
                     + " amb DNI: " + client.getDni()
-                    + " no compleixen l'estada mínima per l'allotjament amb identificador " + allotjament.getId()
             );
         }
 

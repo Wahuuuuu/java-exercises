@@ -55,4 +55,18 @@ public abstract class Allotjament implements InAllotjament {
     // other methods
     // --------------------
     public abstract boolean correcteFuncionament();
+
+    /**
+     * Generar un String dels atributs del objecte, amb el format:
+     *  Nom=<nom>, Id=<id>, estada mínima en temp ALTA: <estadaMinimaALTA>, estada mínima en temp BAIXA: <estadaMinimaBAIXA>.
+     * @return String
+     */
+    public String toString() {
+        return(
+                "Nom=" + this.nom
+              + ", Id=" + this.id
+              + ", estada mínima en temp ALTA: " + this.estadaMinimaAlta
+              + ", estada mínima en temp BAIXA: " + this.estadaMinimaBaixa + "."
+        );
+    }
 }
