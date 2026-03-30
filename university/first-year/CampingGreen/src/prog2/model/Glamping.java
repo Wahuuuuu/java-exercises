@@ -8,9 +8,9 @@ public class Glamping extends Casa {
     }
 
 
-    public Glamping(String nom, String idAllotjaments, String mida, int habitacions, int placesPersones,
+    public Glamping(String nom, String idAllotjaments, boolean operatiu, String iluminacio, float mida, int habitacions, int placesPersones,
                     String material, boolean casaMascota) {
-        super(nom, idAllotjaments, mida, habitacions, placesPersones);
+        super(nom, idAllotjaments, operatiu, iluminacio, mida, habitacions, placesPersones);
         this.material = material;
         this.casaMascota = casaMascota;
     }
@@ -28,4 +28,13 @@ public class Glamping extends Casa {
     // other methods
     @Override
     public boolean correcteFuncionament() { return this.casaMascota; }
+
+    @Override
+    public String toString() {
+        return (
+                super.toString()
+              + ", material: " + this.material
+              + ", casaMascota: " + this.casaMascota
+                );
+    }
 }

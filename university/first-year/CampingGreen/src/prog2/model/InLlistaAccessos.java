@@ -32,7 +32,7 @@ public interface InLlistaAccessos {
      
      /**
       * Recorre tota la llista d'accessos i els tanca. Només decidirà obrir cadascun d'ells si permet l'accés a algun allotjament operatiu.
-     * @throws prog2.vista.ExcepcioCamping Aquest mètode podria llançar una excepció si fos necessari.
+      * @throws prog2.vista.ExcepcioCamping Aquest mètode podria llançar una excepció si fos necessari.
       */
      public void actualitzaEstatAccessos() throws ExcepcioCamping;
      

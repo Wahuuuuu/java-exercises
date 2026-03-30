@@ -8,9 +8,9 @@ public class MobilHome extends Casa {
     }
 
 
-    public MobilHome(String nom, String idAllotjaments, String mida, int habitacions, int placesPersones,
+    public MobilHome(String nom, String idAllotjaments, boolean operatiu, String iluminacio, float mida, int habitacions, int placesPersones,
                      boolean terrassaBarbacoa) {
-        super(nom, idAllotjaments, mida, habitacions, placesPersones);
+        super(nom, idAllotjaments, operatiu, iluminacio, mida, habitacions, placesPersones);
         this.terrassaBarbacoa = terrassaBarbacoa;
     }
 
@@ -23,4 +23,11 @@ public class MobilHome extends Casa {
 
     @Override
     public boolean correcteFuncionament() { return this.terrassaBarbacoa; }
+
+    public String toString() {
+        return (
+                super.toString()
+              + ", terrasaBarbacoa: " + this.terrassaBarbacoa
+                );
+    }
 }

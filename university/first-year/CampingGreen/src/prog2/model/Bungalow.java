@@ -11,9 +11,9 @@ public class Bungalow extends Casa{
 
     // Constructor
     //-------------------------
-    public Bungalow(String nom, String idAllotjaments, String mida, int habitacions, int placesPersones,
+    public Bungalow(String nom, String idAllotjaments, boolean operatiu, String iluminacio, float mida, int habitacions, int placesPersones,
                     int placesParquing, boolean terrassa, boolean tv, boolean aireFred) {
-        super(nom, idAllotjaments, mida, habitacions, placesPersones);
+        super(nom, idAllotjaments, operatiu, iluminacio, mida, habitacions, placesPersones);
         this.placesParquing = placesParquing;
         this.terrassa = terrassa;
         this.tv = tv;
@@ -40,4 +40,13 @@ public class Bungalow extends Casa{
     // -------------------------
     @Override
     public boolean correcteFuncionament() { return this.aireFred; }
+
+    @Override
+    public String toString() {
+        return (
+                super.toString()
+              + ", places de pàrquing: " + this.placesParquing
+              + ", terrasa, tv i airefred: " + this.terrassa + ", " + this.tv + ", " + this.aireFred
+                );
+    }
 }

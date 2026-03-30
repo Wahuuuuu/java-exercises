@@ -5,7 +5,7 @@ import prog2.vista.ExcepcioCamping;
 
 /**
  *
- * @author lauraigual
+ * @author Yanzhe Chen
  */
 public interface InLlistaTasquesManteniment {
     
@@ -22,6 +22,7 @@ public interface InLlistaTasquesManteniment {
      * @throws ExcepcioCamping Per comprovar i avisar si l'allotjament ja té una tasca o si el tipus de tasca que es vol afegir no existeix.
      */
     public void afegirTascaManteniment(int num, String tipus, Allotjament allotjament, String data, int dies) throws ExcepcioCamping;
+
     /**
     * Aquest mètode completa una tasca de manteniment de la llista (l'elimina) i actualitza l'estat de l'allotjament mitjançant el mètode obrirAllotjament de la classe Allotjament.
     * @param tasca Objecte de tipus TascaManteniment

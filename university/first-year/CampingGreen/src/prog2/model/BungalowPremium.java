@@ -5,10 +5,10 @@ public class BungalowPremium extends Bungalow {
     private String codiWiFi;
 
 
-    public BungalowPremium(String nom, String idAllotjaments, String mida, int habitacions, int placesPersones,
+    public BungalowPremium(String nom, String idAllotjaments, boolean operatiu, String iluminacio, float mida, int habitacions, int placesPersones,
                            int placesParquing, boolean terrassa, boolean tv, boolean aireFred,
                            boolean serveisExtra, String codiWiFi) {
-        super(nom, idAllotjaments, mida, habitacions, placesPersones, placesParquing, terrassa, tv, aireFred);
+        super(nom, idAllotjaments, operatiu, iluminacio, mida, habitacions, placesPersones, placesParquing, terrassa, tv, aireFred);
         this.serveisExtra = serveisExtra;
         this.codiWiFi = codiWiFi;
     }
@@ -28,5 +28,14 @@ public class BungalowPremium extends Bungalow {
     public boolean correcteFuncionament() {
         int len = this.codiWiFi.length();
         return (8 <= len && len <= 16);
+    }
+
+    @Override
+    public String toString() {
+        return (
+                super.toString()
+              + ", serveis extra: " + this.serveisExtra
+              + ", codi WiFi: " + this.codiWiFi
+                );
     }
 }

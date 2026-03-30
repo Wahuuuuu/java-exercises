@@ -1,0 +1,35 @@
+Pending:
+Class VistaCamping
+ExempleMenu
+Menu
+
+
+Delete every "throws ExcepcioCamping" that is not necessary
+
+Create more tests
+
+Answer the questions
+
+
+In LlistaAllotjaments.contains:
+    - Is it correct to justify the equality with the ids of the allotjaments?
+
+In every subclasses of Access:
+    - Is every return value of boolean isAccessibilitat fixed? Or can be varied?
+
+Must optimize the format of the message of the exceptions. Be more javanic(pythonic?)
+
+Can optimize the format of every method related to "llistar"
+
+
+Solved:
+
+In LlistaAllotjaments.llistarAllotjaments:
+    - What is estat of a allotjament?
+    - It's l'estat de l'illuminació
+
+
+Idea:
+
+因为在 llista 为空的时候操作统计类的方法很蠢，我认为用户只有在不知道 llista 为空时才会这么做，所以我设计在 llista 为空并尝试操作时抛出异常。
+

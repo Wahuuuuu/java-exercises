@@ -107,7 +107,7 @@ public class Menu<TEnum> {
      * @return Longitud de la descripció més llarga
      */
     private int getMaxLen() {
-        int maxLen=0;
+        int maxLen = 0;
 
         for(TEnum c : _llistaOpcions){
 

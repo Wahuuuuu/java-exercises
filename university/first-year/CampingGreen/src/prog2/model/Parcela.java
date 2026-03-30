@@ -11,8 +11,8 @@ public class Parcela extends Allotjament{
 
     // Constructors
     // ----------------------
-    public Parcela(String nom, String idAllotjament, float mida, boolean connexioElectrica){
-        super(nom, idAllotjament);
+    public Parcela(String nom, String idAllotjament, boolean operatiu, String iluminacio, float mida, boolean connexioElectrica){
+        super(nom, idAllotjament, operatiu, iluminacio);
         this.mida = mida;
         this.connexioElectrica = connexioElectrica;
     }
@@ -32,4 +32,12 @@ public class Parcela extends Allotjament{
     @Override
     public boolean correcteFuncionament() { return this.connexioElectrica; }
 
+    @Override
+    public String toString() {
+        return (
+                super.toString()
+              + ", mida: " + this.mida
+              + ", connexió eléctrica: " + this.connexioElectrica
+                );
+    }
 }

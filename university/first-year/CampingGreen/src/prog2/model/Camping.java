@@ -1,243 +1,322 @@
 package prog2.model;
 
+import prog2.vista.ExcepcioCamping;
 import prog2.vista.ExcepcioReserva;
 
+import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class Camping implements  InCamping {
-    private String nom;
-    private ArrayList<Client> llistaClients;
-    private ArrayList<Allotjament> llistaAllotjaments;
-    private LlistaReserves llistaReserves;
+public class Camping implements InCamping, Serializable {
+    protected String nom;
+    protected LlistaAccessos llistaAccessos;
+    protected LlistaAllotjaments llistaAllotjaments;
+    protected LlistaTasquesManteniment llistaTasquesManteniment;
 
 
-    // constructor
-    public Camping(String nom) {
-        this.nom = nom;
-        this.llistaClients = new ArrayList<Client>();
-        this.llistaAllotjaments = new ArrayList<Allotjament>();
-        this.llistaReserves = new LlistaReserves();
+    public Camping(String nom_) {
+        this.nom = nom_;
+        this.llistaAccessos = new LlistaAccessos();
+        this.llistaAllotjaments = new LlistaAllotjaments();
+        this.llistaTasquesManteniment = new LlistaTasquesManteniment();
+        inicialitzaDadesCamping();
     }
 
 
     /**
      * Retorna el nom del càmping.
-     * @return el nom del càmping.
+     * @return String
      */
-    public String getNom() { return this.nom; }
-
-    /**
-     * Retorna la llista de reserves del camping.
-     * @return
-     */
-    public LlistaReserves getLlistaReserves() { return this.llistaReserves; }
-
-    /**
-     * Retorna la llista d'allotjaments del camping.
-     */
-    public ArrayList<Allotjament> getLlistaAllotjaments() { return this.llistaAllotjaments; };
-
-    /**
-     * Retorna la llista de clients del camping.
-     * @return
-     */
-    public ArrayList<Client> getLlistaClients() { return this.llistaClients; }
-
-    /**
-     * Retorna el número total d'allotjaments del càmping.
-     * @return el número total d'allotjaments.
-     */
-    public int getNumAllotjaments() { return this.llistaAllotjaments.size(); }
-
-    /**
-     * Retorna el número total de reserves del càmping.
-     * @return el número total de reserves.
-     */
-    public int getNumReserves() { return llistaReserves.getNumReserves(); }
-
-    /**
-     * Retorna el número total de clients del càmping.
-     * @return el número total de clients.
-     */
-    public int getNumClients() { return llistaClients.size(); }
-
-
-    /**
-     * Crea un nou objecte de tipus Client i l'afegeix a la llista de clients.
-     * @param nom_ el nom del nou client.
-     * @param dni_ el DNI del nou client.
-     */
-    public void afegirClient(String nom_, String dni_) {
-        llistaClients.add(new Client(nom_, dni_));
-    }
-
-
-    /**
-     * Afegeix una nova parcel·la a la llista d'allotjaments.
-     * @param nom_ el nom de la parcela.
-     * @param idAllotjament_ l'identificador únic de l'allotjament.
-     * @param metres la mida de la parcela.
-     * @param connexioElectrica true si disposa de connexió elèctrica, false altrament.
-     */
-    public void afegirParcela(String nom_, String idAllotjament_, float metres, boolean connexioElectrica) {
-        llistaAllotjaments.add(new Parcela(nom_, idAllotjament_, metres, connexioElectrica));
-    }
-
-
-    /**
-     * Afegeix un nou bungalow a la llista d'allotjaments.
-     * @param nom_ el nom del bungalow.
-     * @param idAllotjament_ l'identificador únic de l'allotjament.
-     * @param mida la mida del bungalow.
-     * @param habitacions el nombre d'habitacions del bungalow.
-     * @param placesPersones el nombre màxim de places per a persones.
-     * @param placesParquing el nombre de places de pàrquing disponibles.
-     * @param terrassa true si disposa de terrassa, false altrament.
-     * @param tv true si disposa de televisió, false altrament.
-     * @param aireFred true si disposa d'aire condicionat, false altrament.
-     */
-    public void afegirBungalow(String nom_, String idAllotjament_, String mida, int habitacions, int placesPersones,
-                        int placesParquing, boolean terrassa, boolean tv, boolean aireFred) {
-        llistaAllotjaments.add(new Bungalow(nom_, idAllotjament_, mida, habitacions, placesPersones, placesParquing,
-                terrassa, tv, aireFred));
-    }
-
-
-    /**
-     * Afegeix un bungalow premium a la llista d'allotjaments.
-     * @param serveisExtra true si ofereix serveis extra.
-     * @param codiWifi el codi de la xarxa Wi-Fi.
-     * (Altres paràmetres igual que `afegirBungalow`)
-     */
-    public void afegirBungalowPremium(String nom_, String idAllotjament_, String mida, int habitacions, int placesPersones,
-                               int placesParquing, boolean terrassa, boolean tv, boolean aireFred,
-                               boolean serveisExtra, String codiWifi) {
-        llistaAllotjaments.add(new BungalowPremium(nom_, idAllotjament_, mida, habitacions, placesPersones, placesParquing,
-                terrassa, tv, aireFred, serveisExtra, codiWifi));
+    public String getNomCamping() {
+        return this.nom;
     }
 
     /**
-     * Afegeix una casa glamping a la llista d'allotjaments.
-     * @param material el material del que està fet.
-     * @param casaMascota true si accepta mascotes.
-     * (Altres paràmetres igual que `afegirBungalow`)
+     * Llista els allotjaments segons el seu estat.
+     * @param estat Estat dels allotjaments a llistar. (Operatiu, No Operatiu)
+     * @return String
+     * @throws ExcepcioCamping
      */
-    public void afegirGlamping(String nom_, String idAllotjament_, String mida, int habitacions, int placesPersones,
-                        String material, boolean casaMascota) {
-        llistaAllotjaments.add(new Glamping(nom_, idAllotjament_, mida, habitacions, placesPersones, material, casaMascota));
+    public String llistarAllotjaments(String estat) throws ExcepcioCamping {
+        return this.llistaAllotjaments.llistarAllotjaments(estat);
     }
 
-
     /**
-     *  Afegeix una mobil-home a la llista d'allotjaments.
-     * @param terrassaBarbacoa true si disposa de terrassa amb barbacoa.
-     * (Altres paràmetres igual que `afegirBungalow`)
+     * Llista els accessos segons l'estat indicat.
+     * @param infoEstat Estat dels accessos a llistar. (Obert, Tancat)
+     * @return String
+     * @throws ExcepcioCamping
      */
-    public void afegirMobilHome(String nom_, String idAllotjament_, String mida, int habitacions, int placesPersones,
-                         boolean terrassaBarbacoa) {
-        llistaAllotjaments.add(new MobilHome(nom_, idAllotjament_, mida, habitacions , placesPersones, terrassaBarbacoa));
+    public String llistarAccessos(String infoEstat) throws ExcepcioCamping {
+        boolean estat;
+        if (infoEstat.equals("Obert")) estat = true;
+        else if (infoEstat.equals("Tancat")) estat = false;
+        else throw new ExcepcioCamping("L'informació de l'estat no conegut: ha de ser Obert o Tancat");
+
+        return this.llistaAccessos.llistarAccessos(estat);
     }
 
+    /**
+     * Llista les tasques registrades al càmping.
+     * @return String
+     * @throws ExcepcioCamping
+     */
+    public String llistarTasquesManteniment() throws ExcepcioCamping {
+        return this.llistaTasquesManteniment.llistarTasquesManteniment();
+    }
 
     /**
-     * Afegeix una nova reserva al càmping. Per fer-ho fa el següent: cerca el soci que vol fer la reserva i el servei que es vol reservar amb la informació necessària rebuda com a paràmetres i invoca al mètode afegirReserva de la classe LlistaReserves que crearà la reserva, si es pot, i la afegirà a la llista de reserves.
-     * @param id_ l'identificador de l'allotjament.
-     * @param dni_ el DNI del client que fa la reserva.
-     * @param dataEntrada la data d'entrada.
-     * @param dataSortida la data de sortida.
-     * @throws ExcepcioReserva si no es pot realitzar la reserva.
+     * Afegeix una nova tasca al registre del càmping.
+     * @param num Número identificador de la tasca.
+     * @param tipus Tipus de tasca (en format string)
+     * @param idAllotjament Identificador de l'allotjament afectat.
+     * @param data Data en què s'ha registrat la tasca.
+     * @param dies Número esperat de dies per completar la tasca
+     * @throws ExcepcioCamping
      */
-    public void afegirReserva(String id_, String dni_, LocalDate dataEntrada, LocalDate dataSortida) throws ExcepcioReserva {
+    public void afegirTascaManteniment(int num, String tipus, String idAllotjament, String data, int dies) throws ExcepcioCamping {
+        Allotjament allotjament = this.llistaAllotjaments.getAllotjament(idAllotjament);
 
-        // cerca el soci que vol fer la reserva
-        Client client = new Client();
+        this.llistaTasquesManteniment.afegirTascaManteniment(num, tipus, allotjament, data, dies);
+        this.llistaAccessos.actualitzaEstatAccessos();
+    }
 
-        Iterator<Client> itClient = this.llistaClients.iterator();
-        boolean encontratClient = false;
-        while (itClient.hasNext() && !encontratClient) {
-            Client c = itClient.next();
-            if (c.getDni().equals(dni_)) {
-                encontratClient = true;
-                client = c;
-            }
-        }
-        if (!encontratClient) throw new ExcepcioReserva("El client amb DNI " + dni_ + " no existeix");
+    /**
+     * Completa una tasca de manteniment existent identificada pel seu número.
+     * @param num Número identificador de la tasca a completar.
+     * @throws ExcepcioCamping
+     */
+    public void completarTascaManteniment(int num) throws ExcepcioCamping {
+        TascaManteniment tasca = this.llistaTasquesManteniment.getTascaManteniment(num);
 
+        this.llistaTasquesManteniment.completarTascaManteniment(tasca);
+        this.llistaAccessos.actualitzaEstatAccessos();
+    }
 
-        // cerca l'allotjament correspondent
-        Allotjament allotjament = new Parcela("Default allotjament", " ", -1f, false);
+    /**
+     * Calcula el nombre d'accessos no accessibles al càmping.
+     * @return El nombre d'accessos accessibles. (int)
+     */
+    public int calculaAccessosNoAccessibles() {
+        return this.llistaAccessos.calculaAccessosNoAccessibles();
+    }
 
-        Iterator<Allotjament> itAllot = this.llistaAllotjaments.iterator();
-        boolean encontratAllotjament = false;
-        while(itAllot.hasNext() && !encontratAllotjament) {
-            Allotjament a = itAllot.next();
-            if (a.getId().equals(id_)) {
-                encontratAllotjament = true;
-                allotjament = a;
-            }
-        }
-        if (!encontratAllotjament) throw new ExcepcioReserva("L'allotjament amb id " + id_ + " no existeix");
+    /**
+     * Calcula la quantitat total de metres dels accessos de terra.
+     * @return La quantitat de metres. (float)
+     */
+    public float calculaMetresTerra() {
+        return this.llistaAccessos.calculaMetresTerra();
+    }
 
+    /**
+     * Guarda l'estat actual del càmping en un fitxer.
+     * @param camiDesti Ruta del fitxer de destinació.
+     * @throws ExcepcioCamping, FileNotFoundException
+     */
+    public void save(String camiDesti) throws ExcepcioCamping {
+        File fitxer = new File(camiDesti);
 
-        // intentar d'afegir la reserva
         try {
-            this.llistaReserves.afegirReserva(allotjament, client, dataEntrada, dataSortida);
-        } catch (ExcepcioReserva e) {
-            System.err.println(e.getMessage());
+            FileOutputStream fout = new FileOutputStream(fitxer);
+            ObjectOutputStream oos = new ObjectOutputStream(fout);
+
+            oos.writeObject(this);
+
+            fout.close();
+        } catch (FileNotFoundException e) {
+            throw new ExcepcioCamping("Fitxer destí no encontrat");
+        } catch (IOException e) {
+            throw new ExcepcioCamping("IOException ocorregut al guardar camping a fitxer");
         }
-
     }
-
 
     /**
-     * Recorre la llista de serveis comprovant el correcte funcionament de cadascun d'ells per contar el número de serveis que estan operatius.
-     * @return el nombre de serveis operatius.
+     * Carrega l'estat d'un càmping des d'un fitxer.
+     * @param camiOrigen Ruta del fitxer d'origen.
+     * @return Una instància de la classe Camping carregada des del fitxer.
+     * @throws ExcepcioCamping
      */
-    public int calculAllotjamentsOperatius() {
-        int count = 0;
-        Iterator<Allotjament> it = this.llistaAllotjaments.iterator();
-        while (it.hasNext()) {
-            if (it.next().correcteFuncionament()) {
-                count++;
-            }
+    static Camping load(String camiOrigen) throws ExcepcioCamping {
+        File fitxer = new File (camiOrigen);
+
+        try {
+            FileInputStream fin = new FileInputStream(fitxer);
+            ObjectInputStream ois = new ObjectInputStream(fin);
+
+            return (Camping) ois.readObject();
+        } catch (FileNotFoundException e) {
+            throw new ExcepcioCamping("Fitxer no encontrat al carregar");
+        } catch (IOException e) {
+            throw new ExcepcioCamping("IOException ocurregut al carregar camping d'un fitxer");
+        } catch (ClassNotFoundException e) {
+            throw new ExcepcioCamping("ClassNotFound ocurregut al carregat camping d'un fitxer");
         }
 
-        return count;
     }
-
 
     /**
-     * Cerca i retorna l'allotjament amb estada mínima de la temporada alta més curta.
-     * @return l'allotjament amb estada mínima de la temporada baixa més curta.
+     * Inicialitza les dades del càmping amb valors predeterminats.
      */
-    public Allotjament getAllotjamentEstadaMesCurta(InAllotjament.Temp temp) throws ExcepcioReserva {
-        if (this.llistaAllotjaments.isEmpty()) throw new ExcepcioReserva("La llistaAllotjament es vacia");
+    public void inicialitzaDadesCamping() {
 
-        Allotjament allotjamentMesCurt = this.llistaAllotjaments.get(0);
-        long estadaMesCurt = (temp == InAllotjament.Temp.ALTA)? allotjamentMesCurt.estadaMinimaAlta : allotjamentMesCurt.estadaMinimaBaixa;
+        llistaAccessos.buidar();
 
-        Iterator<Allotjament> it = this.llistaAllotjaments.iterator();
-        while(it.hasNext()) {
-            Allotjament nextAllotjament = it.next();
-            long nextEstada = (temp == InAllotjament.Temp.ALTA)? nextAllotjament.estadaMinimaAlta : nextAllotjament.estadaMinimaBaixa;
-            if (nextEstada < estadaMesCurt) {
-                estadaMesCurt = nextEstada;
-                allotjamentMesCurt = nextAllotjament;
-            }
-        }
+        float asfalt = 200;
+        Acces Acc1 = new CamiAsfaltat("A1", true, asfalt);
+        llistaAccessos.afegirAcces(Acc1);
 
-        return allotjamentMesCurt;
+        asfalt = 800;
+        float pesMaxim = 10000;
+        Acces Acc2 = new CarreteraAsfaltada("A2", true, asfalt, pesMaxim);
+        llistaAccessos.afegirAcces(Acc2);
+
+        float longitud = 100;
+        Acces Acc3 = new CamiTerra("A3", true, longitud);
+        llistaAccessos.afegirAcces(Acc3);
+
+        longitud = 200;
+        float amplada = 3;
+        Acces Acc4 = new CarreteraTerra("A4", true, longitud, amplada);
+        llistaAccessos.afegirAcces(Acc4);
+
+        asfalt = 350;
+        Acces Acc5 = new CamiAsfaltat("A5", true, asfalt);
+        llistaAccessos.afegirAcces(Acc5);
+
+        asfalt = 800;
+        pesMaxim = 12000;
+        Acces Acc6 = new CarreteraAsfaltada("A6", true, asfalt, pesMaxim);
+        llistaAccessos.afegirAcces(Acc6);
+
+        asfalt = 100;
+        Acces Acc7 = new CamiAsfaltat("A7", true, asfalt);
+        llistaAccessos.afegirAcces(Acc7);
+
+        asfalt = 800;
+        pesMaxim = 10000;
+        Acces Acc8 = new CarreteraAsfaltada("A8", true, asfalt, pesMaxim);
+        llistaAccessos.afegirAcces(Acc8);
+
+        longitud = 50;
+        Acces Acc9 = new CamiTerra("A9", true, longitud);
+        llistaAccessos.afegirAcces(Acc9);
+
+        longitud = 400;
+        amplada = 4;
+        Acces Acc10 = new CarreteraTerra("A10", true, longitud, amplada);
+        llistaAccessos.afegirAcces(Acc10);
+
+        longitud = 80;
+        Acces Acc11 = new CamiTerra("A11", true, longitud);
+        llistaAccessos.afegirAcces(Acc11);
+
+        longitud = 800;
+        amplada = 5;
+        Acces Acc12 = new CarreteraTerra("A12", true, longitud, amplada);
+        llistaAccessos.afegirAcces(Acc12);
+
+
+        /* Pistes */
+        llistaAllotjaments.buidar();
+
+
+        // Afegir parcel·les:
+        //------------------------------
+
+        String nom = "Parcel·la Nord";
+        String idAllotjament = "ALL1";
+        float mida = 64.0f;
+        boolean connexioElectrica = true;
+
+        Parcela ALL1 = new Parcela(nom, idAllotjament, true, "100%", mida, connexioElectrica);
+        llistaAllotjaments.afegirAllotjament(ALL1);
+
+        nom = "Parcel·la Sud";
+        idAllotjament = "ALL2";
+
+        Parcela ALL2 = new Parcela(nom, idAllotjament, true, "100%", mida, connexioElectrica);
+        llistaAllotjaments.afegirAllotjament(ALL2);
+
+        // Afegir bungalows:
+        //------------------------------
+
+        nom = "Bungalow Nord";
+        idAllotjament = "ALL3";
+        mida = 22f;
+        int habitacions =2;
+        int placesPersones = 4;
+        int placesParquing = 1;
+        boolean terrassa = true;
+        boolean tv= true;
+        boolean aireFred = true;
+
+        Bungalow ALL3 = new Bungalow(nom, idAllotjament, true, "100%", mida, habitacions, placesPersones, placesParquing, terrassa, tv, aireFred);
+        llistaAllotjaments.afegirAllotjament(ALL3);
+
+
+        // Afegir bungalows premium:
+        //------------------------------
+        nom = "Bungallow Sud";
+        idAllotjament = "ALL4";
+        mida = 27f;
+        habitacions =2;
+        placesPersones = 6;
+        placesParquing = 1;
+        terrassa = true;
+        tv= true;
+        aireFred = true;
+        boolean serveisExtra = true;
+        String codiWifi = "CampingDelMarBP1";
+
+        BungalowPremium ALL4 = new BungalowPremium(nom, idAllotjament, true, "100%", mida, habitacions, placesPersones, placesParquing, terrassa, tv, aireFred, serveisExtra, codiWifi);
+        llistaAllotjaments.afegirAllotjament(ALL4);
+
+        // Afegir Glamping:
+        //------------------------------
+
+        nom = "Glamping Nord";
+        idAllotjament = "ALL5";
+        mida = 20f;
+        habitacions =1;
+        placesPersones = 2;
+        String material = "Tela";
+        boolean casaMascota = true;
+
+        Glamping ALL5 = new Glamping(nom, idAllotjament, true, "100%", mida, habitacions, placesPersones, material, casaMascota);
+        llistaAllotjaments.afegirAllotjament(ALL5);
+
+
+        // Afegir Mobil-Home:
+        //------------------------------
+
+        nom = "Mobil-Home Sud";
+        idAllotjament = "ALL6";
+        mida = 20f;
+        habitacions =  2;
+        placesPersones = 4;
+        boolean terrassaBarbacoa = true;
+
+        MobilHome ALL6 = new MobilHome(nom, idAllotjament, true, "100%", mida, habitacions, placesPersones, terrassaBarbacoa);
+        llistaAllotjaments.afegirAllotjament(ALL6);
+
+        /* Accés */
+        Acc1.afegirAllotjament(ALL1); Acc1.afegirAllotjament(ALL2);
+        Acc2.afegirAllotjament(ALL1); Acc2.afegirAllotjament(ALL2);
+        Acc3.afegirAllotjament(ALL3);
+        Acc4.afegirAllotjament(ALL3);
+        Acc5.afegirAllotjament(ALL4);
+        Acc6.afegirAllotjament(ALL4);
+        Acc7.afegirAllotjament(ALL5); Acc7.afegirAllotjament(ALL6);
+        Acc8.afegirAllotjament(ALL5); Acc8.afegirAllotjament(ALL6);
+        Acc9.afegirAllotjament(ALL2);
+        Acc10.afegirAllotjament(ALL2);
+        Acc11.afegirAllotjament(ALL6);
+        Acc12.afegirAllotjament(ALL6);
+
+
     }
 
 
-    public static InAllotjament.Temp getTemporada(LocalDate data) {
-        // temporada ALTA: 21/3/XXXX - 20/9/XXXX
-        int anyEntrada = data.getYear();
-        boolean estarALTA = data.isAfter(LocalDate.of(anyEntrada, 3, 20))
-                && data.isBefore(LocalDate.of(anyEntrada, 9,21));
-
-        return (estarALTA)? InAllotjament.Temp.ALTA : InAllotjament.Temp.BAIXA;
-    }
 }

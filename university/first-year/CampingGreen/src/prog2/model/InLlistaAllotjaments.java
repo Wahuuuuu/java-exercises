@@ -7,7 +7,7 @@ import prog2.vista.ExcepcioCamping;
  * Interfície que defineix les operacions bàsiques d'una llista d'allotjaments.
  */
 public interface InLlistaAllotjaments {
-    
+
     /**
      * Afegeix un allotjament rebut per paràmetre a la llista d'allotjaments.
      * @param allotjament Objecte de tipus Allotjament
@@ -23,7 +23,7 @@ public interface InLlistaAllotjaments {
     /**
      * Itera sobre la llista d'allotjaments i retorna un String amb la informació de tots els allotjaments amb l'estat rebut per paràmetre.
      * En cas que no hi hagi allotjaments en l'estat passat com a paràmetre llança una excepció.
-     * @param estat
+     * @param estat String
      * @return String
      * @throws prog2.vista.ExcepcioCamping Aquest mètode llança una excepció en cas que no hi hagi allotjaments en l'estat passat com a paràmetre.
      */

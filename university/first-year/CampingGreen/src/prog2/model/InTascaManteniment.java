@@ -2,6 +2,26 @@ package prog2.model;
 
 public interface InTascaManteniment {
 
+    public static enum TipusTascaManteniment {
+        Reparacio("50%"),
+        Neteja("100%"),
+        RevisioTecnica("50%"),
+        Desinfeccio("0%");
+
+        private final String iluminacio;
+
+        // constructor
+        TipusTascaManteniment(String iluminacio_) {
+            this.iluminacio = iluminacio_;
+        }
+
+
+        // getter
+        public String getIluminacio() {
+            return this.iluminacio;
+        }
+    };
+
     /**
      * Retorna el número identificador de la tasca.
      * @return int
