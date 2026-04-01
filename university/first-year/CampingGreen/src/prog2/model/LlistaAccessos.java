@@ -41,8 +41,6 @@ public class LlistaAccessos {
      *
      */
     public String llistarAccessos(boolean estat) throws ExcepcioCamping {
-        if (this.accessos.isEmpty()) throw new ExcepcioCamping("La llista de accesos es vacía!!");
-
         boolean found = false;
         StringBuffer missatge = new StringBuffer();
         for (Acces a : this.accessos) {
@@ -63,9 +61,6 @@ public class LlistaAccessos {
      * @throws prog2.vista.ExcepcioCamping Aquest mètode podria llançar una excepció si fos necessari.
      */
     public void actualitzaEstatAccessos() throws ExcepcioCamping {
-        if (this.accessos.isEmpty()) throw new ExcepcioCamping("La llista de accesos es vacía!!");
-
-
         for (Acces a : this.accessos) {
             if (a.getAAllotjaments().containsAllotjamentOperatiu()) a.obrirAcces();
             else a.tancarAcces();
@@ -78,8 +73,6 @@ public class LlistaAccessos {
      * @throws prog2.vista.ExcepcioCamping Aquest mètode podria llançar una excepció si fos necessari.
      */
     public int calculaAccessosNoAccessibles() throws ExcepcioCamping {
-        if (this.accessos.isEmpty()) throw new ExcepcioCamping("La llista de accesos es vacía!!");
-
         int comptador = 0;
         for (Acces a : this.accessos) {
             if (!a.isAccessibilitat()) comptador++;
@@ -93,8 +86,6 @@ public class LlistaAccessos {
      * @return float amb els metres totals.
      */
     public float calculaMetresTerra() throws ExcepcioCamping {
-        if (this.accessos.isEmpty()) throw new ExcepcioCamping("La llista de accesos es vacía!!");
-
         float sumaMetres = 0;
         for (Acces a : this.accessos) {
             if (a instanceof AccesTerra) {

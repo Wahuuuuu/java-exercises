@@ -34,7 +34,7 @@ public class Camping implements InCamping, Serializable {
 
     /**
      * Llista els allotjaments segons el seu estat.
-     * @param estat Estat dels allotjaments a llistar. (Operatiu, No Operatiu)
+     * @param estat Estat dels allotjaments a llistar. (Operatiu, No Operatiu, Tot)
      * @return String
      * @throws ExcepcioCamping
      */
@@ -85,7 +85,7 @@ public class Camping implements InCamping, Serializable {
     /**
      * Completa una tasca de manteniment existent identificada pel seu número.
      * @param num Número identificador de la tasca a completar.
-     * @throws ExcepcioCamping
+     * @throws ExcepcioCamping quan no existeix l'allotjament amb id num, quan l'allotjament no té tasca
      */
     public void completarTascaManteniment(int num) throws ExcepcioCamping {
         TascaManteniment tasca = this.llistaTasquesManteniment.getTascaManteniment(num);
@@ -138,7 +138,7 @@ public class Camping implements InCamping, Serializable {
      * @return Una instància de la classe Camping carregada des del fitxer.
      * @throws ExcepcioCamping
      */
-    static Camping load(String camiOrigen) throws ExcepcioCamping {
+    public static Camping load(String camiOrigen) throws ExcepcioCamping {
         File fitxer = new File (camiOrigen);
 
         try {
@@ -155,6 +155,7 @@ public class Camping implements InCamping, Serializable {
         }
 
     }
+
 
     /**
      * Inicialitza les dades del càmping amb valors predeterminats.

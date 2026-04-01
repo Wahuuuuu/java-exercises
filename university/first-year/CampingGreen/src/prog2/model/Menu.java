@@ -11,21 +11,24 @@ import java.util.Scanner;
  * @author Xavi Baró
  */
 public class Menu<TEnum> {
+    // atributs
+    // -------------
      /**
      * Llista de les opcions
      */
     TEnum[] _llistaOpcions=null;
-
     /**
      * Títol del menú
      */
     String _titol="";
-
     /**
      * Llista amb els missatges associats a les accions
      */
     String[] _descripcions=null;
 
+
+    // constructor
+    // --------------
     /**
      * Constructor per defecte. Se li ha de passar un enumeració de les opcions.
      * @param titol Títol del menú
@@ -36,6 +39,9 @@ public class Menu<TEnum> {
         _llistaOpcions=llistaOpcions;
     }
 
+
+    // methods
+    // --------------
     /**
      * Permet assignar una descripció personalitzada a les opcions del menú
      * @param descripcions Llista de descripcions
@@ -55,7 +61,7 @@ public class Menu<TEnum> {
         // Mostrem les opcions
         String lines="--------------";
         for(int i=0;i<getMaxLen();i++) {
-            lines+="-";
+            lines += "-";
         }
         System.out.println(lines);
         System.out.println(_titol.toUpperCase());

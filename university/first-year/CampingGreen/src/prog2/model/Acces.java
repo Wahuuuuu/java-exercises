@@ -13,7 +13,7 @@ public abstract class Acces implements InAcces {
     public Acces(String nom_, boolean accesibilitat_) {
         this.nom = nom_;
         this.accesibilitat = accesibilitat_;
-        this.estat = true;
+        this.estat = accesibilitat_;
         this.allotjaments = new ArrayList<Allotjament>();
     }
 

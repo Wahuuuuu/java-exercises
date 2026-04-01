@@ -48,7 +48,7 @@ public class LlistaTasquesManteniment implements InLlistaTasquesManteniment {
     /**
      * Aquest mètode completa una tasca de manteniment de la llista (l'elimina) i actualitza l'estat de l'allotjament mitjançant el mètode obrirAllotjament de la classe Allotjament.
      * @param tasca Objecte de tipus TascaManteniment
-     * @throws ExcepcioCamping
+     * @throws ExcepcioCamping quan l'allotjament no té tasca
      */
     public void completarTascaManteniment(TascaManteniment tasca) throws ExcepcioCamping {
         if (!tasca.getAllotjament().isOperatiu()) throw new ExcepcioCamping("L'allotjament no té ninguma tasca, no es pot completar la seva tasca");

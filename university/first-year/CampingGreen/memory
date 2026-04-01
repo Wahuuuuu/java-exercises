@@ -21,6 +21,9 @@ Must optimize the format of the message of the exceptions. Be more javanic(pytho
 
 Can optimize the format of every method related to "llistar"
 
+In VistaCamping:
+    What does "instanciar el camping" means?
+
 
 Solved:
 
@@ -33,3 +36,30 @@ Idea:
 
 因为在 llista 为空的时候操作统计类的方法很蠢，我认为用户只有在不知道 llista 为空时才会这么做，所以我设计在 llista 为空并尝试操作时抛出异常。
 
+
+
+1. Llistar la informació de tots els allotjaments
+2. Llistar la informació dels allotjaments operatius
+3. Llistar la informació dels allotjaments no operatius
+4. Llistar la informació dels accessos oberts
+5. Llistar la informació dels accessos tancats
+6. Llistar la informació de les tasques de manteniments actives
+7. Afegir una tasca de manteniment
+• L’aplicació haurà de demanar a l’usuari que introdueixi el número de la tasca, el
+nom de l’allotjament on es vol realitzar la tasca, el tipus de tasca que s’afegeix,
+la data en que s’afegeix, i els dies esperats per realitzar la tasca. A més, aquesta
+operació pot produir errors que s’hauran de gestionar.
+8. Completar una tasca de manteniment
+• L’aplicació haurà de llistar les tasques de manteniment que hi ha actives a la llista
+de tasques i demanar a l’usuari que doni el número de la tasca que s’ha
+completat.
+9. Calcular i mostrar el número total d’accessos que NO proporcionen accessibilitat
+amb vehicle
+10. Calcular i mostrar el número total de metres dels accessos de terra.
+• És a dir, la suma de metres (longitud) que tenen les carreteres de terra i els
+camins de terra.
+11. Guardar càmping
+• Guarda les dades del càmping en un fitxer.
+12. Recuperar càmping
+• Carrega d’un fitxer les dades del càmping prèviament guardades.
+13. Sortir de l’aplicació
