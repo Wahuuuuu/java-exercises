@@ -13,7 +13,6 @@ class AllotjamentTest {
     @BeforeEach
     void setUp() {
         // Creem una instància anònima d'Allotjament per a tests
-
         allotjament = new Parcela("Allotjament Test", "ID001", true, "100%", 64.0f, true);
     }
 
