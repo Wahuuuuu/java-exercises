@@ -14,7 +14,7 @@ public abstract class AccesTerra extends Acces {
 
     public void setLongitud(float longitud_) { this.longitud = longitud_; }
 
-    public abstract String toString();
-
     public abstract boolean isAccessibilitat();
+
+    public abstract String toString();
 }

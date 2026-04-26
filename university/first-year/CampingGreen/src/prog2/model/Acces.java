@@ -4,17 +4,15 @@ import java.util.ArrayList;
 
 public abstract class Acces implements InAcces {
     protected String nom;
-    protected boolean accesibilitat;
     protected boolean estat;
-    protected ArrayList<Allotjament> allotjaments;
+    protected LlistaAllotjaments allotjaments;
 
 
     // constructor
     public Acces(String nom_, boolean accesibilitat_) {
         this.nom = nom_;
-        this.accesibilitat = accesibilitat_;
         this.estat = accesibilitat_;
-        this.allotjaments = new ArrayList<Allotjament>();
+        this.allotjaments = new LlistaAllotjaments();
     }
 
 
@@ -25,17 +23,17 @@ public abstract class Acces implements InAcces {
      * Afegeix un allotjament rebut com a paràmetre a la llista d'allotjaments de l'accés
      * @param allotjament nova allotjament accessible
      */
-    public void afegirAllotjament(Allotjament allotjament) { this.allotjaments.add(allotjament); }
+    public void afegirAllotjament(Allotjament allotjament) { this.allotjaments.afegirAllotjament(allotjament); }
 
     /**
      * Canvia l'estat de l'accés a tancat
      */
-    public void tancarAcces() { this.accesibilitat = false; }
+    public void tancarAcces() { this.estat = false; }
 
     /**
      * Canvia l'estat de l'accés a obert
      */
-    public void obrirAcces() { this.accesibilitat = true; }
+    public void obrirAcces() { this.estat = true; }
 
     /**
      * Retorna si l'accés permet accessibilitat amb cotxe o no.
@@ -57,9 +55,9 @@ public abstract class Acces implements InAcces {
 
     /**
      * Retorna la llista d'allotjaments associats a l'accés
-     * @return
+     * @return LlistaAllotjaments
      */
     public LlistaAllotjaments getAAllotjaments() {
-        return new LlistaAllotjaments();
+        return this.allotjaments;
     }
 }

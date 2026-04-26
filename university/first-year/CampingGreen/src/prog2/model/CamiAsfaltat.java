@@ -6,11 +6,10 @@ public class CamiAsfaltat extends AccesAsfalt {
         super(nom_, accesibilitat_, volum_);
     }
 
-    // other methods
+    // methods
+    public boolean isAccessibilitat() {return false;}
+
     public String toString() {
         return ( this.volum + " metres quadrats d'asfalt" );
     }
-
-    public boolean isAccessibilitat() { return false; }
-
 }

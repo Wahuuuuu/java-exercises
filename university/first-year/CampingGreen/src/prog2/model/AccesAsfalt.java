@@ -15,7 +15,7 @@ public abstract class AccesAsfalt extends Acces {
 
     public void setVolum(float volum_) { this.volum = volum_; }
 
-    public abstract String toString();
-
     public abstract boolean isAccessibilitat();
+
+    public abstract String toString();
 }
