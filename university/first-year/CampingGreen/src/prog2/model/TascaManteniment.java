@@ -21,7 +21,7 @@ public class TascaManteniment implements InTascaManteniment {
         this.data = data_;
         this.dies = dies_;
 
-        allotjament.setIluminacio("0%");
+        allotjament.setIluminacio(tipus.getIluminacio());
     }
 
 

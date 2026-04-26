@@ -76,8 +76,8 @@ public abstract class Allotjament implements InAllotjament {
      */
     public String toString() {
         return(
-                "Nom=" + this.nom
-              + ", Id=" + this.id
+                "Nom = " + this.nom
+              + ", Id = " + this.id
               + ", estada mínima en temp ALTA: " + this.estadaMinimaAlta
               + ", estada mínima en temp BAIXA: " + this.estadaMinimaBaixa
               + ", l'estat d'operacio és: " + this.operatiu

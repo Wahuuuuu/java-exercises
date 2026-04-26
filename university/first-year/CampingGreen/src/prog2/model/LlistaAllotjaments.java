@@ -1,7 +1,6 @@
 package prog2.model;
 
 import prog2.vista.ExcepcioCamping;
-
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 
@@ -22,8 +21,9 @@ public class LlistaAllotjaments implements InLlistaAllotjaments {
      * @throws prog2.vista.ExcepcioCamping Aquest mètode podria llançar una excepció si fos necessari.
      */
     public void afegirAllotjament(Allotjament allotjament) throws ExcepcioCamping {
-        if (this.contains(allotjament)) throw new ExcepcioCamping("In class LlistaAllotjaments.afegirAllotjament: " +
-                                                                  "Afegint allotjament que ja existeix");
+        if (this.contains(allotjament)) throw new ExcepcioCamping("No s'ha pogut afegir l'allotjament a la llista: " +
+                                                                  "'allotjament ja existeix en la llista. " +
+                                                                  "Nom del allotjament: " + allotjament.getNom() + ".");
         this.allotjaments.add(allotjament);
     }
 
@@ -38,9 +38,16 @@ public class LlistaAllotjaments implements InLlistaAllotjaments {
      * The message contains an extra space at the end
      * @param estat String
      * @return String
-     * @throws prog2.vista.ExcepcioCamping Aquest mètode llança una excepció en cas que no hi hagi allotjaments en l'estat passat com a paràmetre.
+     * @throws prog2.vista.ExcepcioCamping Aquest mètode llança una excepció en els següents casos:
+     *                                         - La llista està buida, no hi hagi ningú allotjament
+     *                                         - l'estat passat com a paràmetre és invàlid
+     *                                         - no hi hagi allotjaments en l'estat passat com a paràmetre
      */
     public String llistarAllotjaments(String estat) throws ExcepcioCamping {
+        if (this.allotjaments.isEmpty()) {
+            throw new ExcepcioCamping("No s'ha pogut llistar els allotjaments: no existeix ningú allotjament en la llista!");
+        }
+
         boolean llistarTot = false;
         boolean operatiu = false;
         switch (estat) {
@@ -48,8 +55,9 @@ public class LlistaAllotjaments implements InLlistaAllotjaments {
             case "No Operatiu": operatiu = false; break;
             case "Tot": llistarTot = true;        break;
             default:
-                throw new ExcepcioCamping("Argument invàlid al llistar Allotjaments: " + estat
-                    + "ha de ser un en les següents opcions: operatiu / no operatiu / tot");
+                throw new ExcepcioCamping("No s'ha pogut llistar els allotjaments: " +
+                        "l'estat passat com a paràmetre és invàlid, l'estat: " + estat + ". " +
+                        "Ha de ser un en les següents opcions: operatiu / no operatiu / tot");
         }
 
         boolean found = false;
@@ -64,7 +72,8 @@ public class LlistaAllotjaments implements InLlistaAllotjaments {
             }
         }
 
-        if (!found) throw new ExcepcioCamping("no hi hagi allotjaments en l'estat passat com a paràmetre" );
+        if (!found) throw new ExcepcioCamping("No s'ha pogut llistar els allotjaments: " +
+                                              "no hi hagi allotjaments en l'estat passat com a paràmetre!" );
         return missatge.toString();
     }
 
@@ -104,11 +113,22 @@ public class LlistaAllotjaments implements InLlistaAllotjaments {
             if (a.getId().equals(id)) return a;
         }
 
-        throw new ExcepcioCamping ("In LlistaAllotjaments.getAllotament: no encontrat l'allotjament rebut per parametre en la llista");
-
+        throw new ExcepcioCamping ("No s'ha pogut retornar l'allotjament: no s'encontra l'allotjamentamb l'id " + id + " en la llista");
     }
 
 
+    public String toString() throws ExcepcioCamping {
+        if (this.allotjaments.isEmpty()) {
+            throw new ExcepcioCamping("No existeix ningú allotjament en la llista!");
+        }
+
+        StringBuffer info = new StringBuffer("Existeix els següents allotjaments en la llista: \n");
+        for (Allotjament allotjament : this.allotjaments) {
+            info.append(allotjament.toString() + "\n");
+        }
+
+        return info.toString();
+    }
 
 
 }

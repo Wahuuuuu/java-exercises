@@ -41,19 +41,19 @@ Idea:
 因为在 llista 为空的时候操作统计类的方法很蠢，我认为用户只有在不知道 llista 为空时才会这么做，所以我设计在 llista 为空并尝试操作时抛出异常。
 
 Structure map de prog2.model:
-    Client
+    Client --------------------------- [tested]
     ExempleMenu
         Menu
-    LlistaAllotjaments
-        Allotjament
+    LlistaAllotjaments --------------- [tested]
+        Allotjament ------------------ [tested]
             Pacela
             Casa
                 Glamping
                 Mobilhome
                 Bungalow
                     BungalowPremium
-    LlistaTasquesManteniment
-        TascaManteniment -------------- (uses class Allotjament)
+    LlistaTasquesManteniment ---------- [testing]
+        TascaManteniment  ------------- (uses class Allotjament) [tested]
     LlistaAccessos
         Acces ------------------------- (uses class Allotjament)
             AccesAsfalt

@@ -6,7 +6,8 @@ public class Client implements InClient {
 
 
     public Client() {
-        this("Default", "Default");
+        this.nom = "Default";
+        this.dni = "Default";
     }
 
     public Client(String nom, String dni) {
@@ -26,6 +27,6 @@ public class Client implements InClient {
      * @return
      */
     public String toString() {
-        return( this.nom + " amb DNI: " + this.dni + ". ");
+        return( this.nom + " amb DNI: " + this.dni + ".");
     }
 }

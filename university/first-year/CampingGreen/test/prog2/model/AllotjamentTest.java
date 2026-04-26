@@ -25,7 +25,35 @@ class AllotjamentTest {
         assertEquals(true, allotjament.isOperatiu());
         assertEquals("100%", allotjament.getIluminacio());
     }
+
+    @Test
+    void testCorrecteFuncionament() {
+        Parcela parcela = (Parcela) allotjament;
+        assertEquals(true, parcela.correcteFuncionament());
+
+        parcela.setConnexioElectrica(false);
+        assertEquals(false, parcela.correcteFuncionament());
+    }
+
+    @Test
+    void testToString() {
+        assertEquals("Nom = Allotjament Test, Id = ID001" +
+                ", estada mínima en temp ALTA: 4, estada mínima en temp BAIXA: 2" +
+                ", l'estat d'operacio és: true, l'iluminació és: 100%" +
+                ", mida: 64.0, connexió eléctrica: true",
+                allotjament.toString()
+        );
+    }
+
+    @Test
+    void testObrirTancar() {
+        TascaManteniment tasca = new TascaManteniment(1, InTascaManteniment.TipusTascaManteniment.Reparacio, allotjament, "01/01/2000", 3);
+
+        allotjament.tancarAllotjament(tasca);
+        assertEquals(false, allotjament.isOperatiu());
+
+        allotjament.obrirAllotjament();
+        assertEquals(true, allotjament.isOperatiu());
+    }
+
 }
-
-
-

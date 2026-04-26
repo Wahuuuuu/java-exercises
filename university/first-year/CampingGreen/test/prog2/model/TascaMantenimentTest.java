@@ -24,4 +24,5 @@ public class TascaMantenimentTest {
         assertEquals("2024-03-25", tasca.getData());
         assertEquals(4, tasca.getDies());
     }
+
 }
