@@ -8,7 +8,6 @@ import java.util.ArrayList;
 public class LlistaTasquesManteniment implements InLlistaTasquesManteniment {
     protected ArrayList<TascaManteniment> tasques;
 
-
     public LlistaTasquesManteniment() {
         this.tasques = new ArrayList<TascaManteniment>();
     }
@@ -31,29 +30,48 @@ public class LlistaTasquesManteniment implements InLlistaTasquesManteniment {
         try {
             tipusTasca = InTascaManteniment.TipusTascaManteniment.valueOf(tipus);
         } catch (IllegalArgumentException e) {
-            throw new ExcepcioCamping("no s'ha pogut afegit la tasca, tipus no conegut");
+            throw new ExcepcioCamping("No s'ha pogut afegir la tasca: tipus " + tipus + " no conegut. " +
+                                      "Ha de ser un de les següents opcions: Reparacio, Neteja, RevisioTecnica, Desinfeccio");
         }
 
         // Crea tascaManteniment
         TascaManteniment tasca = new TascaManteniment(num, tipusTasca, allotjament, data, dies);
 
         // Comprovar l'allotjament no té tasca
-        if (!allotjament.isOperatiu()) throw new ExcepcioCamping("no s'ha pogut afegit la tasca, l'allotjament ja té tasca");
+        if (!allotjament.isOperatiu()) {
+            throw new ExcepcioCamping("no s'ha pogut afegit la tasca, " +
+                                      "l'allotjament amb l'id " + allotjament.getId() + " ja té tasca");
+        }
 
         // afegir tasca
         this.tasques.add(tasca);
-
+        allotjament.tancarAllotjament(tasca);
     }
 
     /**
      * Aquest mètode completa una tasca de manteniment de la llista (l'elimina) i actualitza l'estat de l'allotjament mitjançant el mètode obrirAllotjament de la classe Allotjament.
      * @param tasca Objecte de tipus TascaManteniment
-     * @throws ExcepcioCamping quan l'allotjament no té tasca
+     * @throws ExcepcioCamping quan la llista no conté la tasca passat com a paràmetre
+     *                         o quan l'allotjament no té tasca
      */
     public void completarTascaManteniment(TascaManteniment tasca) throws ExcepcioCamping {
-        if (!tasca.getAllotjament().isOperatiu()) throw new ExcepcioCamping("L'allotjament no té ninguma tasca, no es pot completar la seva tasca");
+        // comprovar que la llista conté la tasca
+        try {
+            this.getTascaManteniment(tasca.getNum());
+        } catch (ExcepcioCamping e) {
+            throw new ExcepcioCamping("No es pot completar la tasca: la llista no conté la tasca amb el nombre " + tasca.getNum() + " .");
+        }
 
-        tasca.getAllotjament().obrirAllotjament();
+        //  comprovar que el allotjament té tasca
+        Allotjament allotjament = tasca.getAllotjament();
+        if (allotjament.isOperatiu()) {
+            throw new ExcepcioCamping("No s'ha pogut completar la tasca: l'allotjament amb l'id " + tasca.getAllotjament().getId() +
+                                      " no té ninguma tasca.");
+        }
+
+        // completar la tasca
+        allotjament.obrirAllotjament();
+        this.tasques.remove(tasca);
     }
 
     /**
@@ -63,15 +81,14 @@ public class LlistaTasquesManteniment implements InLlistaTasquesManteniment {
      * @throws ExcepcioCamping
      */
     public String llistarTasquesManteniment() throws ExcepcioCamping {
-        boolean found = false;
+        if (this.tasques.isEmpty()) throw new ExcepcioCamping("No s'ha pogut llistar les tasques: la llista és buida." );
+
         StringBuffer missatge = new StringBuffer();
         for (TascaManteniment tasca : this.tasques) {
-            if (found) missatge.append(", ");
-            found = true;
-            missatge.append(tasca.getNum());
+            if (!missatge.isEmpty()) missatge.append(", \n");
+            missatge.append(tasca.toString());
         }
 
-        if (!found) throw new ExcepcioCamping("no hi hagi cap tasca en la llista" );
         return missatge.toString();
     }
 
@@ -87,7 +104,7 @@ public class LlistaTasquesManteniment implements InLlistaTasquesManteniment {
             if (tasca.getNum() == num) return tasca;
         }
 
-        throw new ExcepcioCamping("No existeix la tasca " + num + " en la llista de tasques");
+        throw new ExcepcioCamping("la llista no conté la tasca amb el nombre " + num + " .");
     }
 
 }

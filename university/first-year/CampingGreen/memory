@@ -52,10 +52,10 @@ Structure map de prog2.model:
                 Mobilhome
                 Bungalow
                     BungalowPremium
-    LlistaTasquesManteniment ---------- [testing]
+    LlistaTasquesManteniment ---------- [tested]
         TascaManteniment  ------------- (uses class Allotjament) [tested]
-    LlistaAccessos
-        Acces ------------------------- (uses class Allotjament)
+    LlistaAccessos -------------------- [testing]
+        Acces ------------------------- (uses class Allotjament) [tested]
             AccesAsfalt
                 CamiAsfaltat
                 CarreteraAsfaltada

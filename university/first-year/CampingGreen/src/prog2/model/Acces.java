@@ -18,23 +18,6 @@ public abstract class Acces implements InAcces {
 
     // getters and setters
     // --------------------
-
-    /**
-     * Afegeix un allotjament rebut com a paràmetre a la llista d'allotjaments de l'accés
-     * @param allotjament nova allotjament accessible
-     */
-    public void afegirAllotjament(Allotjament allotjament) { this.allotjaments.afegirAllotjament(allotjament); }
-
-    /**
-     * Canvia l'estat de l'accés a tancat
-     */
-    public void tancarAcces() { this.estat = false; }
-
-    /**
-     * Canvia l'estat de l'accés a obert
-     */
-    public void obrirAcces() { this.estat = true; }
-
     /**
      * Retorna si l'accés permet accessibilitat amb cotxe o no.
      * @return true if l'acces es accessible, false si no
@@ -60,4 +43,24 @@ public abstract class Acces implements InAcces {
     public LlistaAllotjaments getAAllotjaments() {
         return this.allotjaments;
     }
+
+
+    // methods
+    // ---------------------
+    /**
+     * Afegeix un allotjament rebut com a paràmetre a la llista d'allotjaments de l'accés
+     * @param allotjament nova allotjament accessible
+     */
+    public void afegirAllotjament(Allotjament allotjament) { this.allotjaments.afegirAllotjament(allotjament); }
+
+    /**
+     * Canvia l'estat de l'accés a tancat
+     */
+    public void tancarAcces() { this.estat = false; }
+
+    /**
+     * Canvia l'estat de l'accés a obert
+     */
+    public void obrirAcces() { this.estat = true; }
+
 }

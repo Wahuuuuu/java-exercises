@@ -7,15 +7,13 @@ public class LlistaAccessos {
 
     // Constructors
     // ------------------
-
     public LlistaAccessos() {
         this.accessos = new ArrayList<Acces>();
     }
 
 
-    // other methods
+    //  methods
     // -------------------
-
     /**
      * Afegeix un accés rebut per paràmetre a la llista d'accessos.
      * @param acc Objecte de tipus Acces.
@@ -41,18 +39,18 @@ public class LlistaAccessos {
      *
      */
     public String llistarAccessos(boolean estat) throws ExcepcioCamping {
-        boolean found = false;
+        if (this.accessos.isEmpty()) throw new ExcepcioCamping("No s'ha pogut llistar els accessos: la llista és buida." );
+
         StringBuffer missatge = new StringBuffer();
         for (Acces a : this.accessos) {
             if (a.getEstat() == estat) {
-                if (found) missatge.append(", ");
-                found = true;
+                if (!missatge.isEmpty()) missatge.append(", ");
                 missatge.append(a.getNom());
-
             }
         }
 
-        if (!found) throw new ExcepcioCamping("no hi hagi accessos en l'estat passat com a paràmetre" );
+        if (missatge.isEmpty()) throw new ExcepcioCamping("No s'ha pogut llistar els accessos: " +
+                                                          "la llista no conté ningú accés amb l'estat " + estat + ".");
         return missatge.toString();
     }
 

@@ -39,4 +39,6 @@ public class AccesTest {
         assertFalse(acces2.getEstat());
         assertTrue(acces1.getAAllotjaments() instanceof LlistaAllotjaments);
     }
+
+
 }
