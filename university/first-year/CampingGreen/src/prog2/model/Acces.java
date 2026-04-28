@@ -1,6 +1,6 @@
 package prog2.model;
 
-import java.util.ArrayList;
+import prog2.vista.ExcepcioCamping;
 
 public abstract class Acces implements InAcces {
     protected String nom;
@@ -50,8 +50,11 @@ public abstract class Acces implements InAcces {
     /**
      * Afegeix un allotjament rebut com a paràmetre a la llista d'allotjaments de l'accés
      * @param allotjament nova allotjament accessible
+     * @throws ExcepcioCamping si l'allotjament ja existeix en la llista
      */
-    public void afegirAllotjament(Allotjament allotjament) { this.allotjaments.afegirAllotjament(allotjament); }
+    public void afegirAllotjament(Allotjament allotjament) throws ExcepcioCamping {
+        this.allotjaments.afegirAllotjament(allotjament);
+    }
 
     /**
      * Canvia l'estat de l'accés a tancat

@@ -12,12 +12,23 @@ public class Reserva implements InReserva {
 
 
     // Constructor
+    /**
+     * Constructor amb paràmetres
+     * @param allotjament
+     * @param client
+     * @param dataEntrada
+     * @param dataSortida
+     * @throws ExcepcioReserva si el String de dni no té longitud de 9
+     */
     public Reserva(Allotjament allotjament, Client client, LocalDate dataEntrada, LocalDate dataSortida) throws ExcepcioReserva {
         this.allotjament = allotjament;
         this.client = client;
         this.dataEntrada = dataEntrada;
         this.dataSortida = dataSortida;
-        if (dataSortida.isBefore(dataEntrada)) throw new ExcepcioReserva("La data de sortida no pot ser abans de la data d'entrada");
+        if (dataSortida.isBefore(dataEntrada)) {
+            throw new ExcepcioReserva("No s'ha pogut inicialitzar la Reserva: " +
+                                      "la data de sortida no pot ser abans de la data d'entrada");
+        }
     }
 
 

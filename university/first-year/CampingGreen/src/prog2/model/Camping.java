@@ -36,7 +36,10 @@ public class Camping implements InCamping, Serializable {
      * Llista els allotjaments segons el seu estat.
      * @param estat Estat dels allotjaments a llistar. (Operatiu, No Operatiu, Tot)
      * @return String
-     * @throws ExcepcioCamping
+     * @throws prog2.vista.ExcepcioCamping Aquest mètode llança una excepció en els següents casos:
+     *                                         - La llista està buida, no hi hagi ningú allotjament
+     *                                         - l'estat passat com a paràmetre és invàlid
+     *                                         - no hi hagi allotjaments en l'estat passat com a paràmetre
      */
     public String llistarAllotjaments(String estat) throws ExcepcioCamping {
         return this.llistaAllotjaments.llistarAllotjaments(estat);

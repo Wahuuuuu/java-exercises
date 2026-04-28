@@ -7,11 +7,11 @@ import prog2.vista.ExcepcioCamping;
  * Interfície que defineix les operacions bàsiques d'una llista d'accessos.
  */
 public interface InLlistaAccessos {
-    
+
     /**
      * Afegeix un accés rebut per paràmetre a la llista d'accessos.
      * @param acc Objecte de tipus Acces.
-     * @throws prog2.vista.ExcepcioCamping Aquest mètode podria llançar una excepció si fos necessari.
+     * @throws ExcepcioCamping si ja existeix l'accés en la llista
      */
     public void afegirAcces(Acces acc) throws ExcepcioCamping;
     
@@ -32,21 +32,18 @@ public interface InLlistaAccessos {
      
      /**
       * Recorre tota la llista d'accessos i els tanca. Només decidirà obrir cadascun d'ells si permet l'accés a algun allotjament operatiu.
-      * @throws prog2.vista.ExcepcioCamping Aquest mètode podria llançar una excepció si fos necessari.
       */
-     public void actualitzaEstatAccessos() throws ExcepcioCamping;
-     
-     /**
-     * Itera sobre la llista d'accessos i retorna el número d'accessos sense accessibilitat.
+     public void actualitzaEstatAccessos() ;
+
+    /**
+     * Itera sobre la llista d'accessos i retorna el número d'accessos sense accessibilitat amb vehicles.
      * @return int
-     * @throws prog2.vista.ExcepcioCamping Aquest mètode podria llançar una excepció si fos necessari.
      */
-     public int calculaAccessosNoAccessibles() throws ExcepcioCamping;
-     
-     /**
+     public int calculaAccessosNoAccessibles();
+
+    /**
      * Itera sobre la llista d'accessos, i pels accessos de terra suma el total de metres (longitud) i ho retorna.
      * @return float amb els metres totals.
-     * @throws prog2.vista.ExcepcioCamping Aquest mètode podria llançar una excepció si fos necessari.
      */
-     public float calculaMetresTerra() throws ExcepcioCamping;
+     public float calculaMetresTerra();
 }

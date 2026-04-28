@@ -1,5 +1,7 @@
 package prog2.model;
 
+import prog2.vista.ExcepcioCamping;
+
 public class Client implements InClient {
     private String nom;
     private String dni;  // 9 digits String
@@ -10,7 +12,8 @@ public class Client implements InClient {
         this.dni = "Default";
     }
 
-    public Client(String nom, String dni) {
+    public Client(String nom, String dni) throws ExcepcioCamping {
+        if (dni.length() != 9) throw new ExcepcioCamping("No s'ha pogut inicialitzar el client: el dni ha de tenir 9 dígits.");
         this.nom = nom;
         this.dni = dni;
     }

@@ -11,7 +11,7 @@ public interface InLlistaAllotjaments {
     /**
      * Afegeix un allotjament rebut per paràmetre a la llista d'allotjaments.
      * @param allotjament Objecte de tipus Allotjament
-     * @throws prog2.vista.ExcepcioCamping Aquest mètode podria llançar una excepció si fos necessari.
+     * @throws prog2.vista.ExcepcioCamping Aquest mètode llança excepció quan l'allotjament ja existeix en la llista
      */
     public void afegirAllotjament(Allotjament allotjament) throws ExcepcioCamping;
     
@@ -19,13 +19,17 @@ public interface InLlistaAllotjaments {
      * Buida la llista d'allotjaments.
      */
     public void buidar();
-    
+
     /**
      * Itera sobre la llista d'allotjaments i retorna un String amb la informació de tots els allotjaments amb l'estat rebut per paràmetre.
      * En cas que no hi hagi allotjaments en l'estat passat com a paràmetre llança una excepció.
+     * The message contains an extra space at the end
      * @param estat String
      * @return String
-     * @throws prog2.vista.ExcepcioCamping Aquest mètode llança una excepció en cas que no hi hagi allotjaments en l'estat passat com a paràmetre.
+     * @throws prog2.vista.ExcepcioCamping Aquest mètode llança una excepció en els següents casos:
+     *                                         - La llista està buida, no hi hagi ningú allotjament
+     *                                         - l'estat passat com a paràmetre és invàlid
+     *                                         - no hi hagi allotjaments en l'estat passat com a paràmetre
      */
     public String llistarAllotjaments(String estat) throws ExcepcioCamping;
     

@@ -18,7 +18,7 @@ public class LlistaAllotjaments implements InLlistaAllotjaments {
     /**
      * Afegeix un allotjament rebut per paràmetre a la llista d'allotjaments.
      * @param allotjament Objecte de tipus Allotjament
-     * @throws prog2.vista.ExcepcioCamping Aquest mètode podria llançar una excepció si fos necessari.
+     * @throws prog2.vista.ExcepcioCamping Aquest mètode llança excepció quan l'allotjament ja existeix en la llista
      */
     public void afegirAllotjament(Allotjament allotjament) throws ExcepcioCamping {
         if (this.contains(allotjament)) throw new ExcepcioCamping("No s'ha pogut afegir l'allotjament a la llista: " +
@@ -57,7 +57,7 @@ public class LlistaAllotjaments implements InLlistaAllotjaments {
             default:
                 throw new ExcepcioCamping("No s'ha pogut llistar els allotjaments: " +
                         "l'estat passat com a paràmetre és invàlid, l'estat: " + estat + ". " +
-                        "Ha de ser un en les següents opcions: operatiu / no operatiu / tot");
+                        "Ha de ser un en les següents opcions: Operatiu / No Operatiu / Tot");
         }
 
         boolean found = false;
@@ -106,7 +106,7 @@ public class LlistaAllotjaments implements InLlistaAllotjaments {
      * Busca l'allotjament amb el nom rebut per paràmetre i el retorna. En cas que no existeixi llança una excepció.
      * @param id String amb el id de l'allotjament
      * @return  Objecte de tipus Allotjament
-     * @throws prog2.vista.ExcepcioCamping Aquest mètode podria llançar una excepció si fos necessari.
+     * @throws prog2.vista.ExcepcioCamping Aquest mètode llançar excepció quan no es troba l'allotjament
      */
     public Allotjament getAllotjament(String id) throws ExcepcioCamping {
         for (Allotjament a : this.allotjaments) {

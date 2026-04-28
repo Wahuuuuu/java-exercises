@@ -40,5 +40,15 @@ public class AccesTest {
         assertTrue(acces1.getAAllotjaments() instanceof LlistaAllotjaments);
     }
 
+    @Test
+    void testAfegirAllotjament() {
+        final Allotjament ALL_OPERATIU1 = new Parcela("Parcela", "ID001", true, "100%", 64.0f, true);
+        final Allotjament ALL_OPERATIU2 = new MobilHome("MobilHome", "ID003", true, "100%", 66f, 99, 99, true);
+        acces1.afegirAllotjament(ALL_OPERATIU1);
+        acces1.afegirAllotjament(ALL_OPERATIU2);
+
+        assertFalse(acces1.getAAllotjaments().llistarAllotjaments("Tot").isEmpty());
+        System.out.println(acces1.getAAllotjaments().llistarAllotjaments("Tot"));
+    }
 
 }

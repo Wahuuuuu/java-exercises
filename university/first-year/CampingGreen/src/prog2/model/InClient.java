@@ -10,5 +10,4 @@ public interface InClient {
 
     public void setDni(String dni);
 
-
 }

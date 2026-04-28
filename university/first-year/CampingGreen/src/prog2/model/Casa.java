@@ -1,6 +1,6 @@
 package prog2.model;
 
-public abstract class Casa extends Allotjament{
+public abstract class Casa extends Allotjament {
     protected float mida;
     protected int habitacions;
     protected int placesPersones;

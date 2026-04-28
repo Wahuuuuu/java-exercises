@@ -17,9 +17,13 @@ public class LlistaAccessos {
     /**
      * Afegeix un accés rebut per paràmetre a la llista d'accessos.
      * @param acc Objecte de tipus Acces.
-     * @throws prog2.vista.ExcepcioCamping Aquest mètode podria llançar una excepció si fos necessari.
+     * @throws ExcepcioCamping si ja existeix l'accés en la llista
      */
-    public void afegirAcces(Acces acc) throws ExcepcioCamping {
+    public void afegirAcces(Acces acc) {
+        if (this.accessos.contains(acc)) {
+            throw new ExcepcioCamping("No s'ha pogut afegir l'accés: ja existeix l'accés amb el nom " + acc.getNom() +
+                                      " en la llista.");
+        }
         this.accessos.add(acc);
     }
 
@@ -56,7 +60,6 @@ public class LlistaAccessos {
 
     /**
      * Recorre tota la llista d'accessos i els tanca. Només decidirà obrir cadascun d'ells si permet l'accés a algun allotjament operatiu.
-     * @throws prog2.vista.ExcepcioCamping Aquest mètode podria llançar una excepció si fos necessari.
      */
     public void actualitzaEstatAccessos() throws ExcepcioCamping {
         for (Acces a : this.accessos) {
@@ -66,11 +69,10 @@ public class LlistaAccessos {
     }
 
     /**
-     * Itera sobre la llista d'accessos i retorna el número d'accessos sense accessibilitat.
+     * Itera sobre la llista d'accessos i retorna el número d'accessos sense accessibilitat amb vehicles.
      * @return int
-     * @throws prog2.vista.ExcepcioCamping Aquest mètode podria llançar una excepció si fos necessari.
      */
-    public int calculaAccessosNoAccessibles() throws ExcepcioCamping {
+    public int calculaAccessosNoAccessibles() {
         int comptador = 0;
         for (Acces a : this.accessos) {
             if (!a.isAccessibilitat()) comptador++;
@@ -83,7 +85,7 @@ public class LlistaAccessos {
      * Itera sobre la llista d'accessos, i pels accessos de terra suma el total de metres (longitud) i ho retorna.
      * @return float amb els metres totals.
      */
-    public float calculaMetresTerra() throws ExcepcioCamping {
+    public float calculaMetresTerra() {
         float sumaMetres = 0;
         for (Acces a : this.accessos) {
             if (a instanceof AccesTerra) {

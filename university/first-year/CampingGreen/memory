@@ -54,7 +54,7 @@ Structure map de prog2.model:
                     BungalowPremium
     LlistaTasquesManteniment ---------- [tested]
         TascaManteniment  ------------- (uses class Allotjament) [tested]
-    LlistaAccessos -------------------- [testing]
+    LlistaAccessos -------------------- [tested]
         Acces ------------------------- (uses class Allotjament) [tested]
             AccesAsfalt
                 CamiAsfaltat
@@ -62,7 +62,7 @@ Structure map de prog2.model:
             AccesTerra
                 CamiTerra
                 CarreteraTerrra
-    Reserva ---------------------------- (uses class Client, Allotjament)
+    Reserva ---------------------------- (uses class Client, Allotjament) [tested]
     VistaCamping
         Camping ------------------------ (uses class LlistaAccessos, LlistaCamping, LlistaTasquesManteniment)
 
