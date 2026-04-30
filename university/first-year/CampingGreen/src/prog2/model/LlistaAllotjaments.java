@@ -113,7 +113,7 @@ public class LlistaAllotjaments implements InLlistaAllotjaments {
             if (a.getId().equals(id)) return a;
         }
 
-        throw new ExcepcioCamping ("No s'ha pogut retornar l'allotjament: no s'encontra l'allotjamentamb l'id " + id + " en la llista");
+        throw new ExcepcioCamping ("No s'ha pogut retornar l'allotjament: no es troba l'allotjamentamb l'id " + id + " en la llista");
     }
 
 

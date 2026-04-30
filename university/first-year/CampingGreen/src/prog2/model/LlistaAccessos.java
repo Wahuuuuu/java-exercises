@@ -59,9 +59,10 @@ public class LlistaAccessos {
     }
 
     /**
-     * Recorre tota la llista d'accessos i els tanca. Només decidirà obrir cadascun d'ells si permet l'accés a algun allotjament operatiu.
+     * Recorre tota la llista d'accessos i els tanca.
+     * Només decidirà obrir cadascun d'ells si permet l'accés a algun allotjament operatiu.
      */
-    public void actualitzaEstatAccessos() throws ExcepcioCamping {
+    public void actualitzaEstatAccessos() {
         for (Acces a : this.accessos) {
             if (a.getAAllotjaments().containsAllotjamentOperatiu()) a.obrirAcces();
             else a.tancarAcces();

@@ -15,14 +15,25 @@ public class Camping implements InCamping, Serializable {
     protected LlistaTasquesManteniment llistaTasquesManteniment;
 
 
+    // Constructor
     public Camping(String nom_) {
         this.nom = nom_;
         this.llistaAccessos = new LlistaAccessos();
         this.llistaAllotjaments = new LlistaAllotjaments();
         this.llistaTasquesManteniment = new LlistaTasquesManteniment();
-        inicialitzaDadesCamping();
     }
 
+
+    // getters and setters
+    // -------------------------
+    public LlistaAccessos getAccessos() { return this.llistaAccessos; }
+    public void setAccessos(LlistaAccessos accessos_) { this.llistaAccessos = accessos_; }
+
+    public LlistaAllotjaments getAllotjaments() { return this.llistaAllotjaments; }
+    public void setAllotjaments(LlistaAllotjaments allotjaments_) { this.llistaAllotjaments = allotjaments_; }
+
+    public LlistaTasquesManteniment getTasques() { return this.llistaTasquesManteniment; }
+    public void setTasques(LlistaTasquesManteniment tasques_) { this.llistaTasquesManteniment = tasques_; }
 
     /**
      * Retorna el nom del càmping.
@@ -31,6 +42,11 @@ public class Camping implements InCamping, Serializable {
     public String getNomCamping() {
         return this.nom;
     }
+    public void setNomCamping(String nom_) { this.nom = nom_; }
+
+
+    // methods
+    // -------------------------
 
     /**
      * Llista els allotjaments segons el seu estat.
@@ -49,13 +65,14 @@ public class Camping implements InCamping, Serializable {
      * Llista els accessos segons l'estat indicat.
      * @param infoEstat Estat dels accessos a llistar. (Obert, Tancat)
      * @return String
-     * @throws ExcepcioCamping
+     * @throws ExcepcioCamping quan: el String infoEstat no coincideix a Obert o Tancat i
+     *                               no hi hagi accessos en l'estat passat com a parametre.
      */
     public String llistarAccessos(String infoEstat) throws ExcepcioCamping {
         boolean estat;
         if (infoEstat.equals("Obert")) estat = true;
         else if (infoEstat.equals("Tancat")) estat = false;
-        else throw new ExcepcioCamping("L'informació de l'estat no conegut: ha de ser Obert o Tancat");
+        else throw new ExcepcioCamping("No s'ha pogut llistar els accessos: l'infoEstat ha de ser Obert o Tancat");
 
         return this.llistaAccessos.llistarAccessos(estat);
     }
@@ -63,7 +80,7 @@ public class Camping implements InCamping, Serializable {
     /**
      * Llista les tasques registrades al càmping.
      * @return String
-     * @throws ExcepcioCamping
+     * @throws ExcepcioCamping si la llista és buida
      */
     public String llistarTasquesManteniment() throws ExcepcioCamping {
         return this.llistaTasquesManteniment.llistarTasquesManteniment();
@@ -76,7 +93,9 @@ public class Camping implements InCamping, Serializable {
      * @param idAllotjament Identificador de l'allotjament afectat.
      * @param data Data en què s'ha registrat la tasca.
      * @param dies Número esperat de dies per completar la tasca
-     * @throws ExcepcioCamping
+     * @throws ExcepcioCamping Aquest mètode llançar excepció quan: no es troba l'allotjament,
+     *                                                              l'allotjament ja té una tasca o
+     *                                                              el tipus de tasca que es vol afegir no existeix.
      */
     public void afegirTascaManteniment(int num, String tipus, String idAllotjament, String data, int dies) throws ExcepcioCamping {
         Allotjament allotjament = this.llistaAllotjaments.getAllotjament(idAllotjament);
@@ -88,7 +107,7 @@ public class Camping implements InCamping, Serializable {
     /**
      * Completa una tasca de manteniment existent identificada pel seu número.
      * @param num Número identificador de la tasca a completar.
-     * @throws ExcepcioCamping quan no existeix l'allotjament amb id num, quan l'allotjament no té tasca
+     * @throws ExcepcioCamping quan no existeix l'allotjament amb id num o quan l'allotjament no té tasca
      */
     public void completarTascaManteniment(int num) throws ExcepcioCamping {
         TascaManteniment tasca = this.llistaTasquesManteniment.getTascaManteniment(num);
@@ -116,7 +135,8 @@ public class Camping implements InCamping, Serializable {
     /**
      * Guarda l'estat actual del càmping en un fitxer.
      * @param camiDesti Ruta del fitxer de destinació.
-     * @throws ExcepcioCamping, FileNotFoundException
+     * @throws ExcepcioCamping quan: no es troba el fitxer destí
+     *                               es ocurreix IOException
      */
     public void save(String camiDesti) throws ExcepcioCamping {
         File fitxer = new File(camiDesti);
@@ -129,9 +149,9 @@ public class Camping implements InCamping, Serializable {
 
             fout.close();
         } catch (FileNotFoundException e) {
-            throw new ExcepcioCamping("Fitxer destí no encontrat");
+            throw new ExcepcioCamping("No s'ha pogut guardar el camping: fitxer destí no trobat");
         } catch (IOException e) {
-            throw new ExcepcioCamping("IOException ocorregut al guardar camping a fitxer");
+            throw new ExcepcioCamping("No s'ha pogut guardar el camping: IOException ocorregut al guardar camping a fitxer");
         }
     }
 
@@ -139,7 +159,8 @@ public class Camping implements InCamping, Serializable {
      * Carrega l'estat d'un càmping des d'un fitxer.
      * @param camiOrigen Ruta del fitxer d'origen.
      * @return Una instància de la classe Camping carregada des del fitxer.
-     * @throws ExcepcioCamping
+     * @throws ExcepcioCamping quan: no es troba el fitxer o
+     *                               es ocurreix IOException i ClassNotFoundException
      */
     public static Camping load(String camiOrigen) throws ExcepcioCamping {
         File fitxer = new File (camiOrigen);
@@ -150,11 +171,11 @@ public class Camping implements InCamping, Serializable {
 
             return (Camping) ois.readObject();
         } catch (FileNotFoundException e) {
-            throw new ExcepcioCamping("Fitxer no encontrat al carregar");
+            throw new ExcepcioCamping("No s'ha pogut carregar el camping: fitxer no trobat");
         } catch (IOException e) {
-            throw new ExcepcioCamping("IOException ocurregut al carregar camping d'un fitxer");
+            throw new ExcepcioCamping("No s'ha pogut carregar el camping: IOException ocurregut");
         } catch (ClassNotFoundException e) {
-            throw new ExcepcioCamping("ClassNotFound ocurregut al carregat camping d'un fitxer");
+            throw new ExcepcioCamping("No s'ha pogut carregar el camping: ClassNotFound ocurregut");
         }
 
     }

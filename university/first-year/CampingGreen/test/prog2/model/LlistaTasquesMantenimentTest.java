@@ -1,6 +1,7 @@
 package prog2.model;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import prog2.vista.ExcepcioCamping;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -21,7 +22,8 @@ public class LlistaTasquesMantenimentTest {
         tasca1 = new TascaManteniment(1, TascaManteniment.TipusTascaManteniment.Reparacio, all1, "2024-03-25", 4);
     }
 
-    // @Test
+    @Disabled
+    @Test
     void testAfegirTascaManteniment() {
         tasques.afegirTascaManteniment(2, "Neteja", all1, "1000-01-01", 3);
         System.out.println(tasques.llistarTasquesManteniment());
@@ -35,7 +37,8 @@ public class LlistaTasquesMantenimentTest {
         catch (ExcepcioCamping e) { System.out.println(e.getMessage()); }
     }
 
-    // @Test
+    @Disabled
+    @Test
     void testGetTascaManteniment() {
         tasques.afegirTascaManteniment(2, "Neteja", all1, "1000-01-01", 3);
         assertEquals(2, tasques.getTascaManteniment(2).getNum());
@@ -44,7 +47,8 @@ public class LlistaTasquesMantenimentTest {
         catch (ExcepcioCamping e) { System.out.println(e.getMessage()); }
     }
 
-    // @Test
+    @Disabled
+    @Test
     void testCompletarTascaManteniment() {
         // cas normal
         tasques.afegirTascaManteniment(2, "Neteja", all1, "1000-01-01", 3);

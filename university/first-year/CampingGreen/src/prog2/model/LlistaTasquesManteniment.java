@@ -23,7 +23,8 @@ public class LlistaTasquesManteniment implements InLlistaTasquesManteniment {
      * @param allotjament Allotjament on s'afegeix la tasca
      * @param data Data quan genera la tasca
      * @param dies Número de dies esperats per completar la tasca
-     * @throws ExcepcioCamping Per comprovar i avisar si l'allotjament ja té una tasca o si el tipus de tasca que es vol afegir no existeix.
+     * @throws ExcepcioCamping quan l'allotjament ja té una tasca o
+     *                              el tipus de tasca que es vol afegir no existeix.
      */
     public void afegirTascaManteniment(int num, String tipus, Allotjament allotjament, String data, int dies) throws ExcepcioCamping {
         InTascaManteniment.TipusTascaManteniment tipusTasca;
@@ -78,7 +79,7 @@ public class LlistaTasquesManteniment implements InLlistaTasquesManteniment {
      * Itera sobre la llista de tasques i retorna un String amb la informació de totes les tasques de manteniment.
      * En cas que no hi hagi cap tasca llança una excepció.
      * @return String
-     * @throws ExcepcioCamping
+     * @throws ExcepcioCamping si la llista és buida
      */
     public String llistarTasquesManteniment() throws ExcepcioCamping {
         if (this.tasques.isEmpty()) throw new ExcepcioCamping("No s'ha pogut llistar les tasques: la llista és buida." );

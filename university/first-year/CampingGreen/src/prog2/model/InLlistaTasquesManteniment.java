@@ -4,7 +4,6 @@ package prog2.model;
 import prog2.vista.ExcepcioCamping;
 
 /**
- *
  * @author Yanzhe Chen
  */
 public interface InLlistaTasquesManteniment {
