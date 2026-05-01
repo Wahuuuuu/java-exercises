@@ -131,15 +131,4 @@ class CampingTest {
         assertEquals(5f, camping.calculaMetresTerra());
     }
 
-    // @Test
-    void save() {
-    }
-
-    // @Test
-    void load() {
-    }
-
-    // @Test
-    void inicialitzaDadesCamping() {
-    }
 }

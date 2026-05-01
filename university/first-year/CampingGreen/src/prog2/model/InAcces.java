@@ -27,25 +27,25 @@ public interface InAcces {
 
     /**
      * Retorna si l'accés permet accessibilitat amb cotxe o no.
-     * @return 
+     * @return true if l'acces es accessible, false si no
      */
     public boolean isAccessibilitat();
 
     /**
      * Retorna el nom de l'accés
-     * @return
+     * @return String nom
      */
     public String getNom();
 
     /**
      * Retorna l'estat de l'accés (obert o tancat)
-     * @return
+     * @return true si l'acces és obert, false si l'accés és tancat
      */
     public boolean getEstat();
 
     /**
      * Retorna la llista d'allotjaments associats a l'accés
-     * @return
+     * @return LlistaAllotjaments
      */
     public LlistaAllotjaments getAAllotjaments();
 }

@@ -25,9 +25,9 @@ public class Client implements InClient {
     public void setDni(String dni) { this.dni = dni; }
 
     /**
-     * Retorna un String indecant els atributs de la classe Client
+     * Retorna un String indicant els atributs de la classe Client
      * Format: <nom> amb DNI: <dni>.
-     * @return
+     * @return String indicant els atributs de la classe Client
      */
     public String toString() {
         return( this.nom + " amb DNI: " + this.dni + ".");

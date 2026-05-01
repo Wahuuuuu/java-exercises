@@ -40,7 +40,6 @@ public class LlistaAccessos {
      * @param estat boolean
      * @return String
      * @throws prog2.vista.ExcepcioCamping Aquest mètode llança una excepció en cas que no hi hagi accessos en l'estat passat com a parametre.
-     *
      */
     public String llistarAccessos(boolean estat) throws ExcepcioCamping {
         if (this.accessos.isEmpty()) throw new ExcepcioCamping("No s'ha pogut llistar els accessos: la llista és buida." );

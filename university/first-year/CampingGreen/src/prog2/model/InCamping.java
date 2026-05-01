@@ -15,9 +15,12 @@ public interface InCamping {
 
     /**
      * Llista els allotjaments segons el seu estat.
-     * @param estat Estat dels allotjaments a llistar. (Operatiu, No Operatiu)
+     * @param estat Estat dels allotjaments a llistar. (Operatiu, No Operatiu, Tot)
      * @return String
-     * @throws ExcepcioCamping
+     * @throws prog2.vista.ExcepcioCamping Aquest mètode llança una excepció en els següents casos:
+     *                                         - La llista està buida, no hi hagi ningú allotjament
+     *                                         - l'estat passat com a paràmetre és invàlid
+     *                                         - no hi hagi allotjaments en l'estat passat com a paràmetre
      */
     String llistarAllotjaments(String estat) throws ExcepcioCamping;
 
@@ -25,14 +28,15 @@ public interface InCamping {
      * Llista els accessos segons l'estat indicat.
      * @param infoEstat Estat dels accessos a llistar. (Obert, Tancat)
      * @return String
-     * @throws ExcepcioCamping
+     * @throws ExcepcioCamping quan: el String infoEstat no coincideix a Obert o Tancat i
+     *                               no hi hagi accessos en l'estat passat com a parametre.
      */
     String llistarAccessos(String infoEstat) throws ExcepcioCamping;
 
     /**
      * Llista les tasques registrades al càmping.
      * @return String
-     * @throws ExcepcioCamping
+     * @throws ExcepcioCamping si la llista és buida
      */
     String llistarTasquesManteniment() throws ExcepcioCamping;
 
@@ -43,14 +47,16 @@ public interface InCamping {
      * @param idAllotjament Identificador de l'allotjament afectat.
      * @param data Data en què s'ha registrat la tasca.
      * @param dies Número esperat de dies per completar la tasca
-     * @throws ExcepcioCamping
+     * @throws ExcepcioCamping Aquest mètode llançar excepció quan: no es troba l'allotjament,
+     *                                                              l'allotjament ja té una tasca o
+     *                                                              el tipus de tasca que es vol afegir no existeix.
      */
     void afegirTascaManteniment(int num, String tipus, String idAllotjament, String data, int dies) throws ExcepcioCamping;
 
     /**
      * Completa una tasca de manteniment existent identificada pel seu número.
      * @param num Número identificador de la tasca a completar.
-     * @throws ExcepcioCamping
+     * @throws ExcepcioCamping quan no existeix l'allotjament amb id num o quan l'allotjament no té tasca
      */
     void completarTascaManteniment(int num) throws ExcepcioCamping;
 
@@ -69,7 +75,8 @@ public interface InCamping {
     /**
      * Guarda l'estat actual del càmping en un fitxer.
      * @param camiDesti Ruta del fitxer de destinació.
-     * @throws ExcepcioCamping
+     * @throws ExcepcioCamping quan: no es troba el fitxer destí
+     *                               es ocurreix IOException
      */
     void save(String camiDesti) throws ExcepcioCamping;
 
@@ -77,7 +84,8 @@ public interface InCamping {
      * Carrega l'estat d'un càmping des d'un fitxer.
      * @param camiOrigen Ruta del fitxer d'origen.
      * @return Una instància de la classe Camping carregada des del fitxer.
-     * @throws ExcepcioCamping
+     * @throws ExcepcioCamping quan: no es troba el fitxer o
+     *                               es ocurreix IOException i ClassNotFoundException
      */
     static Camping load(String camiOrigen) throws ExcepcioCamping {
         throw new UnsupportedOperationException("Aquest mètode està implementat a la classe Camping");

@@ -7,7 +7,7 @@ import prog2.vista.ExcepcioCamping;
  * @author Yanzhe Chen
  */
 public interface InLlistaTasquesManteniment {
-    
+
     /**
      * Aquest mètode crea una tasca de manteniment amb la informació passada com a paràmetres
      * (número d'identificador, tipus, l'allotjament on s'ha produït, la data, i els dies esperats per completar-la) i l'afegeix a la llista.
@@ -18,25 +18,27 @@ public interface InLlistaTasquesManteniment {
      * @param allotjament Allotjament on s'afegeix la tasca
      * @param data Data quan genera la tasca
      * @param dies Número de dies esperats per completar la tasca
-     * @throws ExcepcioCamping Per comprovar i avisar si l'allotjament ja té una tasca o si el tipus de tasca que es vol afegir no existeix.
+     * @throws ExcepcioCamping quan l'allotjament ja té una tasca o
+     *                              el tipus de tasca que es vol afegir no existeix.
      */
     public void afegirTascaManteniment(int num, String tipus, Allotjament allotjament, String data, int dies) throws ExcepcioCamping;
 
     /**
-    * Aquest mètode completa una tasca de manteniment de la llista (l'elimina) i actualitza l'estat de l'allotjament mitjançant el mètode obrirAllotjament de la classe Allotjament.
-    * @param tasca Objecte de tipus TascaManteniment
-    * @throws ExcepcioCamping
+     * Aquest mètode completa una tasca de manteniment de la llista (l'elimina) i actualitza l'estat de l'allotjament mitjançant el mètode obrirAllotjament de la classe Allotjament.
+     * @param tasca Objecte de tipus TascaManteniment
+     * @throws ExcepcioCamping quan la llista no conté la tasca passat com a paràmetre
+     *                         o quan l'allotjament no té tasca
      */
     public void completarTascaManteniment(TascaManteniment tasca) throws ExcepcioCamping;
-    
+
     /**
      * Itera sobre la llista de tasques i retorna un String amb la informació de totes les tasques de manteniment.
      * En cas que no hi hagi cap tasca llança una excepció.
      * @return String
-     * @throws ExcepcioCamping
+     * @throws ExcepcioCamping si la llista és buida
      */
     public String llistarTasquesManteniment() throws ExcepcioCamping;
-    
+
     /**
      * Busca la tasca amb el número rebut per paràmetre i la retorna.
      * En cas que no existeixi llança una excepció.
