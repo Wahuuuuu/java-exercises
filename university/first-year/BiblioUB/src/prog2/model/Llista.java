@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import prog2.vista.BiblioException;
 
-public class Llista<T> implements Serializable {
+public abstract class Llista<T> implements Serializable, InLlista {
    protected ArrayList<T> llista;
 
    public Llista() {
