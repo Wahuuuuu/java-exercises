@@ -1,5 +1,15 @@
-
-
+Exemplar ------------- [implemented]
+Usuari --------------- [implemented]
+    Estudiant
+    Professor
+Prestec
+    PrestecCurt
+    PrestecLlarg
+Llista
+    LlistaExemplars --- [
+    LlistaUsuaris
+    LlistaPrestecs
+Dades
 
 
 

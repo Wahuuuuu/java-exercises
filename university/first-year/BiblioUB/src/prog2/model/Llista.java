@@ -9,7 +9,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import prog2.vista.BiblioException;
 
-public abstract class Llista<T> implements Serializable, InLlista {
+public abstract class Llista<T> implements Serializable, InLlista<T> {
    protected ArrayList<T> llista;
 
    public Llista() {
@@ -20,7 +20,7 @@ public abstract class Llista<T> implements Serializable, InLlista {
      * Retornar nombre d'elements continguts a la llista
      */
     public int getSize() {
-          // TO-BE-DONE
+          return 0; // TO-BE-DONE
     }
 
     /**
@@ -41,7 +41,7 @@ public abstract class Llista<T> implements Serializable, InLlista {
      * Retornar element de la llista a la posició position
      */
     public T getAt(int position) {
-          // TO-BE-DONE
+        return llista.get(0); // TO-BE-DONE
     }
 
     /**
@@ -55,7 +55,7 @@ public abstract class Llista<T> implements Serializable, InLlista {
      * Retornar true si la llista és buida
      */
     public boolean isEmpty() {
-          // TO-BE-DONE
+          return false; // TO-BE-DONE
     }
 
     /**
