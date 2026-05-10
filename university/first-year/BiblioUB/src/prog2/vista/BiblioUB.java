@@ -117,7 +117,7 @@ public class BiblioUB {
                     if(dstFile != null) {
                         // Guardar les dades al fitxer triat
                         try {
-                             this.adaptador.guardaDades(dstFile);
+                             // this.adaptador.guardaDades(dstFile); // 记得取消注释
                              System.err.println("Dades guardades");
                         } catch (BiblioException ex) {
                             System.out.println("Error guardant les dades: " + ex.getMessage());
@@ -130,7 +130,7 @@ public class BiblioUB {
                     if(srcFile != null) {
                         // Carregar les dades del fitxer triat
                         try {
-                             this.adaptador.carregaDades(srcFile);
+                             // this.adaptador.carregaDades(srcFile); // 记得取消注释
                              System.err.println("Dades carregades");
                         } catch(BiblioException ex) {
                             System.out.println("Error carregant les dades." + ex.getMessage());

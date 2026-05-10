@@ -8,12 +8,12 @@ public class Exemplar implements InExemplar {
     private boolean disponible;
 
     // Constructor:
-    public Exemplar(String id_, String titol_, String autor_, boolean admetPrestecLlarg_, boolean disponible_) {
+    public Exemplar(String id_, String titol_, String autor_, boolean admetPrestecLlarg_) {
         this.id = id_;
         this.titol = titol_;
         this.autor = autor_;
         this.admetPrestecLlarg = admetPrestecLlarg_;
-        this.disponible = disponible_;
+        this.disponible = true;
     }
 
     // getters and setters:

@@ -20,42 +20,42 @@ public abstract class Llista<T> implements Serializable, InLlista<T> {
      * Retornar nombre d'elements continguts a la llista
      */
     public int getSize() {
-          return 0; // TO-BE-DONE
+          return this.llista.size();
     }
 
     /**
      * Afegir element a la llista. Afegeix l'element t a la llista
      */
     public void afegir(T t) throws BiblioException {
-          // TO-BE-DONE
+          this.llista.add(t);
     }
 
     /**
      * Esborrar element de la llista. Esborra l'element t a la llista
      */
     public void esborrar(T t) {
-          // TO-BE-DONE
+          this.llista.remove(t);
     }
 
     /**
      * Retornar element de la llista a la posició position
      */
     public T getAt(int position) {
-        return llista.get(0); // TO-BE-DONE
+        return llista.get(position);
     }
 
     /**
      * Buidar tots el elements de la llista
      */
     public void clear() {
-          // TO-BE-DONE
+          this.llista.clear();
     }
 
     /**
      * Retornar true si la llista és buida
      */
     public boolean isEmpty() {
-          return false; // TO-BE-DONE
+          return this.llista.isEmpty();
     }
 
     /**

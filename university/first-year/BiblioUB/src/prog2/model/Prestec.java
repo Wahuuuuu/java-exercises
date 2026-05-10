@@ -1,5 +1,7 @@
 package prog2.model;
 
+import prog2.vista.BiblioException;
+
 import java.util.Date;
 
 public abstract class Prestec implements InPrestec {
@@ -11,9 +13,14 @@ public abstract class Prestec implements InPrestec {
     private Date dataLimitRetorn;
 
     // constructor
-    public Prestec(Exemplar exemplar_, Usuari usuari_, Date dataCreacio, Date dataLimitRetorn /*, boolean retornat*/) {
+    public Prestec(Exemplar exemplar_, Usuari usuari_, Date dataCreacio_) {
         this.exemplar = exemplar_;
         this.usuari = usuari_;
+        this.dataCreacio = new Date(dataCreacio_.getTime());
+        this.dataLimitRetorn = new Date(this.dataCreacio.getTime() + this.duradaPrestec());
+        this.retornat = false;
+
+        this.exemplar.setDisponible(false);
     }
 
     // getters and setters:
@@ -41,28 +48,44 @@ public abstract class Prestec implements InPrestec {
     // ------------------------
 
     /**
-     * Retornar prestec.
+     * Retornar el préstec
+     *
+     * @throws BiblioException si el préstec és retornat o si el préstec corresponent és disponible
      */
-    public void retorna() {
-        // TODO
+    public void retorna() throws BiblioException {
+        if (this.exemplar.isDisponible() || this.retornat) {
+            throw new BiblioException("No s'ha pogut retornar l'exemplar: l'exemplar amb l'id " + this.exemplar.getId() +
+                                      " va ser retornat anteriorment!");
+        }
+
+        this.retornat = true;
+        this.exemplar.setDisponible(true);
     }
 
     /**
      * Retornar durada prestec. La durada del prestec depen del tipus de prestec
      */
     public long duradaPrestec() {
-        return 0; // TODO
+        return 0L;  // valor default
     }
 
     /**
      * Retornar true si el prestec està endarrerit per a la data actual
      */
     public boolean prestecEndarrerit() {
-        return false; // TODO
+        Date ara = new Date();
+        return (!this.retornat && ara.after(this.dataLimitRetorn));
     }
 
     @Override
     public String toString() {
-        return "TODO"; // TODO
+        return ("Tipus=" + this.tipusPrestec() +
+                ", Exemplar=" + this.exemplar.getTitol() +
+                ", Usuari=" + this.usuari.getNom() +
+                ", Data de creacio=" + this.dataCreacio.toString() +
+                ", Data límit de retorn=" + this.dataLimitRetorn.toString() +
+                ", Retornat=" + this.retornat
+        );
     }
+
 }
