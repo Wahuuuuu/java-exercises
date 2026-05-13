@@ -153,8 +153,23 @@ public class BiblioUB {
      * Afegir un nou article
      * @param sc
      */
-    
-    private void afegirExemplar(Scanner sc){
+    private void afegirExemplar(Scanner sc) {
+        try {
+            System.out.println("Introdueix l'id de l'exemplar: ");
+            String id = sc.next();
+
+            System.out.println("Introdueix l'titol: ");
+            String id = sc.next();
+
+            System.out.println("Introdueix l'autor: ");
+            String id = sc.next();
+
+            System.out.println("Admet préstec llarg? (s/n): ");
+            String id = sc.next();
+
+        } catch (BiblioException e) {
+
+        }
     }
 
     private void menuGestioUsuaris(Scanner sc) {
