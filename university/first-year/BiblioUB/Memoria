@@ -36,11 +36,11 @@ Esbossos
         LlistaPrestecs ---- [implemented][tested][javadoced]
     Dades ----------------- [implemented][tested][javadoced]
 
-    Adaptador
+    Adaptador ------------- [implemented][javadoced]
 
     biblioUB
     iniciadorBiblioUB
-    Menu
+    Menu ------------------ /
 
 Throw exceptions when:
     - 在 LlistaExemplars 中，不能出现两个有同样 id 的书籍 OOO
