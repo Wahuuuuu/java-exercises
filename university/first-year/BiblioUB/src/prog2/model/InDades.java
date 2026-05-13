@@ -10,8 +10,7 @@ import java.util.ArrayList;
 import prog2.vista.BiblioException;
 
 /**
- *
- * @author dortiz
+ * @author dortiz, Yanzhe Chen
  */
 public interface InDades {
 

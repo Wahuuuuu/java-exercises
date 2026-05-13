@@ -1,0 +1,47 @@
+
+Diagrama: Els classes d'adalt utilitza els classes d'abaix:
+
+- IniciadorBiblioUB
+- BiblioUB
+- Menu
+- Adaptador
+- Dades
+- Llista
+    - LlistaExemplars
+    - LlistaPrestecs
+    - LlistaUsuaris
+- Prestec
+    - PrestecLlarg
+    - PrestecNormal
+- Usuari
+    - Estudiants
+    - Professors
+- Exemplar
+- BiblioException
+
+
+=============================================================================
+Esbossos
+
+    Exemplar -------------- [implemented][tested]
+    Usuari ---------------- [implemented][can't be tested]
+        Estudiant --------- [implemented][tested]
+        Professor --------- [implemented][tested]
+    Prestec --------------- [implemented][can't be tested]
+        PrestecCurt ------- [implemented][tested]
+        PrestecLlarg ------ [implemented][tested]
+    Llista ---------------- [implemented][can't be tested]
+        LlistaExemplars --- [implemented][tested]
+        LlistaUsuaris ----- [implemented][tested]
+        LlistaPrestecs ---- [implemented][tested]
+    Dades ----------------- [implemented][tested]
+
+
+Throw exceptions when:
+    - 在 LlistaExemplars 中，不能出现两个有同样 id 的书籍 OOO
+    - 在 LlistaUsuaris 中，不能出现两个有同样邮箱的用户 OOO
+    - 尝试用不能长期借阅的书籍新建 PrestecLlarg 对象
+    - 借阅一本不可借阅的书
+    - 有超时书籍的用户借书
+    - 在已经达到借阅上限时借书
+    - 归还一本已被归还的书 OOO

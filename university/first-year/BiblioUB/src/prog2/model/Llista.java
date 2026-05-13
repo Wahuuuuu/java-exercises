@@ -40,7 +40,9 @@ public abstract class Llista<T> implements Serializable, InLlista<T> {
     /**
      * Retornar element de la llista a la posició position
      */
-    public T getAt(int position) {
+    public T getAt(int position) throws BiblioException{
+        if (position > this.getSize()) throw new BiblioException("No s'ha pogut retornar l'element: idex out of range");
+
         return llista.get(position);
     }
 
