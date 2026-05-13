@@ -19,6 +19,11 @@ public class Dades implements InDades {
 
     /**
      * Afegeix exemplar. Llança excepció si l'id ja existeix
+     * @param id
+     * @param titol
+     * @param autor
+     * @param admetPrestecLlarg
+     * @throws BiblioException si l'id ja existeix
      */
     public void afegirExemplar(String id, String titol, String autor, boolean admetPrestecLlarg) throws BiblioException {
         Exemplar exemplar = new Exemplar(id, titol, autor, admetPrestecLlarg);

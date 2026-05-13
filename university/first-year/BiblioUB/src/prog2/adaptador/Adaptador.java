@@ -76,9 +76,7 @@ public class Adaptador implements Serializable {
      * Retornar préstec. Llança excepció si el prestec ja es vaig retornar.
      * El préstec s'identifica amb la seva posició dins de l'ArrayList
      */
-    public void retornarPrestec(int position) throws BiblioException {
-        this.dades.retornarPrestec(position);
-    }
+    public void retornarPrestec(int position) throws BiblioException { this.dades.retornarPrestec(position); }
 
     /**
      * Recuperar préstecs. Retorna un ArrayList amb tots els préstecs

@@ -23,10 +23,10 @@ Diagrama: Els classes d'adalt utilitza els classes d'abaix:
 =============================================================================
 Esbossos
 
-    Exemplar -------------- [implemented][tested]
-    Usuari ---------------- [implemented][can't be tested]
-        Estudiant --------- [implemented][tested]
-        Professor --------- [implemented][tested]
+    Exemplar -------------- [implemented][tested][javadoced]
+    Usuari ---------------- [implemented][can't be tested][javadoced]
+        Estudiant --------- [implemented][tested][javadoced]
+        Professor --------- [implemented][tested][javadoced]
     Prestec --------------- [implemented][can't be tested]
         PrestecCurt ------- [implemented][tested]
         PrestecLlarg ------ [implemented][tested]
