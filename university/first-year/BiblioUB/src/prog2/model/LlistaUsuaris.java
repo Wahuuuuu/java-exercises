@@ -5,8 +5,15 @@ import prog2.vista.BiblioException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+/**
+ * Defineix la llista d'usuaris de la biblioteca
+ * @author Yanzhe Chen
+ */
 public class LlistaUsuaris extends Llista<Usuari> {
     // constructor
+    /**
+     * Crea una llista buida d'usuaris
+     */
     public LlistaUsuaris() {
         this.llista = new ArrayList<Usuari>();
     }

@@ -16,7 +16,7 @@ public abstract class Usuari implements InUsuari {
     // constructor amb paràmetres
 
     /**
-     * Crea un nou exemplar amb les dades indicades.
+     * Crea un nou usuari amb les dades indicades.
      * @param email_ Email de l'usuari
      * @param nom_ Nom de l'usuari
      * @param adreca_ Adreça de l'usuari

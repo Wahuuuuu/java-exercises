@@ -5,14 +5,20 @@ import prog2.vista.BiblioException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+/**
+ * Defineix la llista d'exemplars de la biblioteca
+ * @author Yanzhe Chen
+ */
 public class LlistaExemplars extends Llista<Exemplar> {
     // constructor
+    /**
+     * Crea una llista buida d'exemplars
+     */
     public LlistaExemplars() {
         this.llista = new ArrayList<Exemplar>();
     }
 
     // methods
-
     /**
      * Returns true si la llista ja conté l'exemplar amb l'id passat, false si no
      *
@@ -30,7 +36,8 @@ public class LlistaExemplars extends Llista<Exemplar> {
     }
 
     /**
-     * Afegir l'exemplar a la llista
+     * Afegeix un exemplar a la llista
+     *
      * @param exemplar l'exemplar a afegir
      * @throws BiblioException si la llista ja conté un exemplar amb el mateix id
      */

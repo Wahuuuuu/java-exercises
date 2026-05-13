@@ -9,39 +9,58 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import prog2.vista.BiblioException;
 
+/**
+ * @author Yanzhe Chen
+ * Defineix les llistes de la biblioteca
+ * @param <T> Tipus dels elements continguts a la llista.
+ */
 public abstract class Llista<T> implements Serializable, InLlista<T> {
    protected ArrayList<T> llista;
 
+    /**
+     * Crea una llista buida.
+     */
    public Llista() {
        llista = new ArrayList<>();
     }
 
     /**
-     * Retornar nombre d'elements continguts a la llista
+     * Retorna el nombre d'elements continguts a la llista.
+     *
+     * @return Nombre d'elements de la llista.
      */
     public int getSize() {
           return this.llista.size();
     }
 
     /**
-     * Afegir element a la llista. Afegeix l'element t a la llista
+     * Afegeix un element a la llista.
+     *
+     * @param t Element que s'ha d'afegir a la llista.
+     * @throws BiblioException Si l'element no es pot afegir a la llista.
      */
     public void afegir(T t) throws BiblioException {
           this.llista.add(t);
     }
 
     /**
-     * Esborrar element de la llista. Esborra l'element t a la llista
+     * Esborra un element de la llista.
+     *
+     * @param t Element que s'ha d'esborrar de la llista.
      */
     public void esborrar(T t) {
           this.llista.remove(t);
     }
 
     /**
-     * Retornar element de la llista a la posició position
+     * Retorna l'element situat a la posició indicada.
+     *
+     * @param position Posició de l'element dins de la llista.
+     * @return Element situat a la posició indicada.
+     * @throws BiblioException Si l'index és més gran que el size
      */
-    public T getAt(int position) throws BiblioException{
-        if (position > this.getSize()) throw new BiblioException("No s'ha pogut retornar l'element: idex out of range");
+    public T getAt(int position) throws BiblioException {
+        if (position > this.getSize()) throw new BiblioException("No s'ha pogut retornar l'element: index out of range");
 
         return llista.get(position);
     }
@@ -54,17 +73,20 @@ public abstract class Llista<T> implements Serializable, InLlista<T> {
     }
 
     /**
-     * Retornar true si la llista és buida
+     * Indica si la llista és buida.
+     *
+     * @return True si la llista és buida, False altrament.
      */
     public boolean isEmpty() {
           return this.llista.isEmpty();
     }
 
     /**
-     * Retornar l'ArrayList que es fa servir dins de la classe
+     * Retorna l'ArrayList intern utilitzat per la llista.
+     *
+     * @return ArrayList intern de la llista.
      */
     public ArrayList<T> getArrayList() {
-        ArrayList<T> arrlist = new ArrayList<>(llista);
-        return arrlist;
+        return new ArrayList<>(llista);
     }
 }

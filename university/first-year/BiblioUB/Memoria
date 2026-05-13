@@ -27,15 +27,20 @@ Esbossos
     Usuari ---------------- [implemented][can't be tested][javadoced]
         Estudiant --------- [implemented][tested][javadoced]
         Professor --------- [implemented][tested][javadoced]
-    Prestec --------------- [implemented][can't be tested]
-        PrestecCurt ------- [implemented][tested]
-        PrestecLlarg ------ [implemented][tested]
-    Llista ---------------- [implemented][can't be tested]
-        LlistaExemplars --- [implemented][tested]
-        LlistaUsuaris ----- [implemented][tested]
-        LlistaPrestecs ---- [implemented][tested]
-    Dades ----------------- [implemented][tested]
+    Prestec --------------- [implemented][can't be tested][javadoced]
+        PrestecCurt ------- [implemented][tested][javadoced]
+        PrestecLlarg ------ [implemented][tested][javadoced]
+    Llista ---------------- [implemented][can't be tested][javadoced]
+        LlistaExemplars --- [implemented][tested][javadoced]
+        LlistaUsuaris ----- [implemented][tested][javadoced]
+        LlistaPrestecs ---- [implemented][tested][javadoced]
+    Dades ----------------- [implemented][tested][javadoced]
 
+    Adaptador
+
+    biblioUB
+    iniciadorBiblioUB
+    Menu
 
 Throw exceptions when:
     - 在 LlistaExemplars 中，不能出现两个有同样 id 的书籍 OOO
